@@ -22,13 +22,14 @@ string invertOrder(string input);
 string digitLetShift(string input, int numDigits);
 string digitNumShift(string input, int numDigits);
 string intToString (int arry[], int size);
+string deleteDig (string input, int numDigits);
 
 
 int test();
 
 
 int main() {
-    string check = invertLetToNum("ZZZSDFKS"); //119121213526
+    string check = deleteDig("ABCDEF",-2); 
     printf("ans: %s\n",check.c_str());
 
 	return 0;
@@ -102,6 +103,24 @@ string intToString (int arry[], int size){
         outputString = outputString + str;
         }
     return outputString;
+}
+string deleteDig (string input, int numDigits){
+    char inputArry[input.size()+1];
+    strcpy(inputArry, input.c_str());
+    char newArry[] = {0};
+    int size = sizeof(inputArry)/sizeof(inputArry[0]) - abs(numDigits) - 1;
+
+    if (numDigits > 0) {
+        for (int i = 0; i < size; i++) {
+            newArry[i] = inputArry[i];
+        }
+    } else {
+        for (int j = 0; j < size; j++) {
+            newArry[j] = inputArry[j+abs(numDigits)];
+        }
+    }
+    string str(newArry);
+    return str;
 }
 
 

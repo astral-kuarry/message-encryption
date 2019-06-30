@@ -9,9 +9,8 @@
 #include <stdio.h>
 #include "username.h"
 #include "stdlib.h"
-
-
 using namespace std;
+
 
 //functions
 void intro();
@@ -32,7 +31,7 @@ int main() {
 void inputs(string *email, string *message, string *receivedKey, int *type) { //Return email, message, time, and recieved keyword if recipient
 	system("clear");
 	cout << "Welcome to AQ Encryption v1.0" << endl;
-	cout << "Enter your status: \n[1] Sender \n[2] Receiver\n";
+	cout << "Enter your status ([1] sender, [2] receiver): ";
 	cin >> *type;
 	if (cin.fail()) {
 		*type = 0;
@@ -58,7 +57,7 @@ void inputs(string *email, string *message, string *receivedKey, int *type) { //
 // Emails proper data to receiver, or emails pass/fail status to sender
 void email(string email, string message, string receivedKey, int type){
 	if (type == 1) {
-
+		
 	}
 }
 

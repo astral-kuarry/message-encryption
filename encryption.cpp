@@ -15,7 +15,9 @@ void intro();
 void input();
 
 int main() {
-	input();
+	username testing;
+	int output = testing.testFunc();
+	cout << output;
 	return 0;
 }
  

@@ -5,17 +5,25 @@
 #include <array>
 #include <stdio.h>
 #include <cstring>
+#include <cstdio>
+#include <ctime>
+#include <math.h>
+#include <sstream>
+#include <iomanip>
 
 using namespace std;
 
 void swap(int *xp, int *yp);
 void sort(int arr[], int n);
-void printArray(char arr[], int size);
+void printArray(int arr[], int size);
 string intToString (int arry[], int size);
 string getTextKey(string message);
 int countSpaces( char str[], int n );
 int stringRemoveNonAlphaNum(char *str);
-void getDateKey();
+string getDateKey();
+long long getFrac(long double input, int numDigits);
+bool checkPrime(int number);
+
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -30,9 +38,10 @@ int main() {
     cout << getTextKey("\"Bott!23as is the meat in a ferrari sandwitch ")<< "\n";
     cout << getTextKey("  test§¶•hªº–≠ test ")<< "\n";
     cout << getTextKey("Formula.1.2019x09.Austria.Race.SkyF1HD.Smcgill1969")<< "\n";
-    cout << getTextKey("ewer wer wer werw erw erw er wer wer wer wer wer wer wer werwer wer wer ")<< "\n";
+    cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
-
+    cout << getDateKey() << endl;
+    cout << checkPrime(997) << endl << checkPrime(38);
 
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
@@ -55,7 +64,7 @@ void sort(int arr[], int n)
            if (arr[j] > arr[j+1]) 
               swap(&arr[j], &arr[j+1]); 
 } 
-void printArray(char arr[], int size) 
+void printArray(int arr[], int size) 
 { 
     int i; 
     for (i=0; i < size; i++) 
@@ -119,6 +128,7 @@ string getTextKey(string message){
     string finalString = string(finalArry);
     return finalString;
 }
+
 int stringRemoveNonAlphaNum(char *str)
 {
     unsigned long i = 0;
@@ -137,6 +147,70 @@ int stringRemoveNonAlphaNum(char *str)
     return loops;
 }
 
-void getDateKey(){
-    
+string getDateKey(){
+    std::time_t rawtime;
+    std::tm* timeinfo;
+    char datestring [80];
+    int dateInt[14];
+    int firstSeven[7];
+    int lastSeven[7];
+    std::time(&rawtime);
+    timeinfo = std::localtime(&rawtime);
+    std::strftime(datestring,80,"%Y%m%d%H%M%S",timeinfo);
+    datestring[14] = '\0';
+    for (int i = 0; i < 14;i++){
+        dateInt[i] = datestring[i] - '0';
+    }
+    for (int j = 0; j < 7; j++){
+        firstSeven[j] = dateInt[j];
+    }
+    for (int k = 0; k < 7; k++){
+        lastSeven[k] = dateInt[k + 7];
+    }
+    int firstSevenInt = 0;
+    int lastSevenInt = 0;
+    for (int j = 0; j < 7; j++) {
+        firstSevenInt *= 10;
+        firstSevenInt += firstSeven[j];
+        lastSevenInt *= 10;
+        lastSevenInt += lastSeven[j];
+    }
+    long double getFracInput = (long double) firstSevenInt / lastSevenInt;
+    long long dateKeyInt = getFrac(getFracInput, 12);
+    std::stringstream ss;
+    ss << std::setw(12) << std::setfill('0') << dateKeyInt;
+    std::string finalString = ss.str();
+    return finalString;
+}
+
+long long int getFrac(long double input, int numDigits) {
+    long double result;
+    long double intpart;
+    long double fractpart;
+    fractpart = modf(input , &intpart);
+    if (fractpart != 0.0) {
+        while (fractpart < 0.1) {
+            fractpart *= 10;
+        }
+    }
+        
+    for (int i = 1; i <= numDigits; i++) {
+        fractpart *= 10;
+    }
+    return round(fractpart);
+}
+
+bool checkPrime(int number){
+    int flag = 1;
+    for (int i = 2; i <= sqrt(number) / 2; i++) {  
+        if (number % i == 0) { 
+            flag = 0; 
+            break; 
+        } 
+    } 
+    if (flag == 1) { 
+        return true;
+    } else { 
+        return false;
+    } 
 }

@@ -15,6 +15,7 @@ string intToString (int arry[], int size);
 string getTextKey(string message);
 int countSpaces( char str[], int n );
 int stringRemoveNonAlphaNum(char *str);
+void getDateKey();
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -134,4 +135,8 @@ int stringRemoveNonAlphaNum(char *str)
         }
     }
     return loops;
+}
+
+void getDateKey(){
+    
 }

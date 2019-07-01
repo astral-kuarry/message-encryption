@@ -16,28 +16,35 @@ using namespace std;
 
 
 //functions
-int getFrac(long double input, int numDigits);
+long long int getFrac(long double input, int numDigits);
 string invertLetToNum(string input);
 string invertOrder(string input);
 string digitLetShift(string input, int numDigits);
 string digitNumShift(string input, int numDigits);
 string intToString (int arry[], int size);
 string deleteDig (string input, int numDigits);
+string getTextKey(string message);
+int stringRemoveNonAlphaNum(char *str);
+string getDateKey();
+
 
 
 int test();
 
 
 int main() {
-    string check = deleteDig("ABCDEF",-2); 
-    printf("ans: %s\n",check.c_str());
+    //string check = deleteDig("ABCDEF",-2); 
+    //printf("ans: %s\n",check.c_str());
+    //getDateKey();
+    long long int check = getFrac(1.9899471238433,15);
+    printf("ans: %lld\n",check);
 
 	return 0;
 }
 
-int getFrac(long double input, int numDigits) {
-    int result;
-    double intpart;
+long long int getFrac(long double input, int numDigits) {
+    long double result;
+    long double intpart;
     long double fractpart;
 
     fractpart = modf(input , &intpart);
@@ -122,5 +129,115 @@ string deleteDig (string input, int numDigits){
     string str(newArry);
     return str;
 }
+string getTextKey(string message){ 
+    int i, j, k, l, m;
+    char messageArry[message.size()+1];
+    strcpy(messageArry, message.c_str());
+    int size = sizeof(messageArry)/sizeof(*messageArry);
+    int spaces = 0;
+    for(unsigned int iLoop = 0; iLoop < size; iLoop++ )
+        if(messageArry [iLoop] == ' ' )
+            spaces++;
+    char finalArry[11];
+    int count = 0; 
+    for (i = 0; messageArry[i]; i++) 
+        if (messageArry[i] != ' ') 
+            messageArry[count++] = messageArry[i];                    
+    messageArry[count] = '\0'; 
+    if (count > 10){
+        for (l= 0; l < 10; l++){
+            finalArry[l] = messageArry[l];
+            finalArry[l] = toupper(finalArry[l]);
+        }
+        finalArry[10] = '\0';
+    }
+    if (count < 10){
+        for ( k = 0; k < count; k++){
+            finalArry[k] = messageArry[k];
+            finalArry[k] = toupper(finalArry[k]);
+        }
+        for (l = k; l < 10; l++){
+            finalArry[l] ='X';
+        }
+    } else {
+        for (m = 0; m < 10; m++){
+            finalArry[m] = toupper(finalArry[m]);
+        }
+    }
+    
 
+    finalArry[10] = '\0';
+    int loops = stringRemoveNonAlphaNum(finalArry);
+    //cout << loops;
+    if (loops > 0){
+        for (int t = 9-loops; t < 10; t++){
+            finalArry[t] = 'X';
+        }
+        
+    }
+    string finalString = string(finalArry);
+    return finalString;
+}
+int stringRemoveNonAlphaNum(char *str)
+{
+    unsigned long i = 0;
+    unsigned long j = 0;
+    char c;
+    int loops = 0;
 
+    while ((c = str[i++]) != '\0')
+    {
+        if (isalnum(c) && !isdigit(c))
+        {
+            str[j++] = c;
+        }else{
+            loops++;
+        }
+        //str[j++] = 'X';
+        
+    }
+   // str[j] = '\0';
+    return loops;
+//    return str;
+}
+string getDateKey(){
+    std::time_t rawtime;
+    std::tm* timeinfo;
+    char datestring [80];
+    int dateInt[14];
+    int firstSeven[7];
+    int lastSeven[7];
+    std::time(&rawtime);
+    timeinfo = std::localtime(&rawtime);
+    std::strftime(datestring,80,"%Y%m%d%H%M%S",timeinfo);
+    datestring[14] = '\0';
+    for (int i = 0; i < 14;i++){
+        //cout << datestring[i];
+        dateInt[i] = datestring[i] - '0';
+        //cout << dateInt[i] << endl;
+    }
+    //printArray(dateInt, 14);
+    for (int j = 0; j < 7; j++){
+        firstSeven[j] = dateInt[j];
+    }
+    for (int k = 0; k < 7; k++){
+        lastSeven[k] = dateInt[k + 7];
+    }
+    //printArray(firstSeven, 7);
+    //printArray(lastSeven, 7);
+    int firstSevenInt = 0;
+    int lastSevenInt = 0;
+    for (int j = 0; j < 7; j++) {
+        firstSevenInt *= 10;
+        firstSevenInt += firstSeven[j];
+        lastSevenInt *= 10;
+        lastSevenInt += lastSeven[j];
+    }
+    cout << "\n" << firstSevenInt << "\n" << lastSevenInt << endl;
+    long double getFracInput = (long double) firstSevenInt / lastSevenInt;
+    printf("input: %.12Lf\n",getFracInput);
+    int dateKeyInt = getFrac(getFracInput, 12);
+    printf("ans:%d\n",dateKeyInt);
+
+    return "s";
+}

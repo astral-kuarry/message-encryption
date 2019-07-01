@@ -22,6 +22,8 @@ int countSpaces( char str[], int n );
 int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
 long long getFrac(long double input, int numDigits);
+bool checkPrime(int number);
+
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -39,7 +41,7 @@ int main() {
     cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
     cout << getDateKey() << endl;
-    
+    cout << checkPrime(997) << endl << checkPrime(38);
 
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
@@ -196,4 +198,19 @@ long long int getFrac(long double input, int numDigits) {
         fractpart *= 10;
     }
     return round(fractpart);
+}
+
+bool checkPrime(int number){
+    int flag = 1;
+    for (int i = 2; i <= sqrt(number) / 2; i++) {  
+        if (number % i == 0) { 
+            flag = 0; 
+            break; 
+        } 
+    } 
+    if (flag == 1) { 
+        return true;
+    } else { 
+        return false;
+    } 
 }

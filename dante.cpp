@@ -28,12 +28,11 @@ bool checkPrime(int number);
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
     sort(mark, 5);
-    //printArray(mark, 5);
-    string s = "THIS IS A TEST";
+    printArray(mark, 5);
     int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
     int size = sizeof(test)/sizeof(test[0]);
-    //cout << intToString(test, size) << "\n";
-    cout << getTextKey("People who have met their online friends, what made you instantly regret it?") << "\n";
+    cout << intToString(test, size) << endl;
+    cout << getTextKey("[Serious]Former teens who went to wilderness camps, therapeutic boarding schools and other \"troubled teen\" programs, what were your experiences?") << "\n";
     cout << getTextKey("What are some things you realised too late in life?") << "\n";
     cout << getTextKey("\"Bott!23as is the meat in a ferrari sandwitch ")<< "\n";
     cout << getTextKey("  test§¶•hªº–≠ test ")<< "\n";
@@ -129,16 +128,13 @@ string getTextKey(string message){
     return finalString;
 }
 
-int stringRemoveNonAlphaNum(char *str)
-{
+int stringRemoveNonAlphaNum(char *str) {
     unsigned long i = 0;
     unsigned long j = 0;
     char c;
     int loops = 0;
-    while ((c = str[i++]) != '\0')
-    {
-        if (isalnum(c) && !isdigit(c))
-        {
+    while ((c = str[i++]) != '\0') {
+        if (isalnum(c) && !isdigit(c)) {
             str[j++] = c;
         }else{
             loops++;

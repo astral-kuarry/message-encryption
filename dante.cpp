@@ -24,6 +24,7 @@ string getDateKey();
 long long getFrac(long double input, int numDigits);
 bool checkPrime(int number);
 bool checkConsonant(char letter);
+bool checkAscending(string numString);
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -41,8 +42,9 @@ int main() {
     cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
     cout << getDateKey() << endl;
-    cout << checkPrime(997) << endl << checkPrime(38) << endl;
-    cout << checkConsonant('E') << endl;
+    cout << "True Primne: " << checkPrime(997) << endl << "False Prime: " << checkPrime(38) << endl;
+    cout << "False Consonant: " << checkConsonant('E') << endl;
+    cout << checkAscending("111111567811") << endl;
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
 
@@ -224,3 +226,21 @@ bool checkConsonant(char letter){
     }
     return true;
 }
+
+bool checkAscending(string numString){
+    char numStringArry[120];
+    int numIntArry[120];
+    int i,j;
+    strcpy(numStringArry, numString.c_str());
+    for (i = 0; i < 12; i++){
+        numIntArry[i] = numStringArry[i] - '0';
+    }
+    for (j = 0; j < 9; j++){
+        if ( ((numIntArry[j] + 1) == numIntArry[j+1]) && ((numIntArry[j] + 2) == numIntArry[j+2]) && ((numIntArry[j] + 3) == numIntArry[j+3])){
+            return true;
+        }
+    }
+    return false;
+}
+
+

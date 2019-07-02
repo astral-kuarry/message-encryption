@@ -17,13 +17,15 @@ void swap(int *xp, int *yp);
 void sort(int arr[], int n);
 void printArray(int arr[], int size);
 string intToString (int arry[], int size);
-string getTextKey(string message);
+string getTextKey(string message);     
 int countSpaces( char str[], int n );
 int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
 long long getFrac(long double input, int numDigits);
 bool checkPrime(int number);
-
+bool checkConsonant(char letter);
+bool checkAscending(string numString);
+void count(string input, char checkArry[], int countArry[]);
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -40,10 +42,12 @@ int main() {
     cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
     cout << getDateKey() << endl;
-    cout << checkPrime(997) << endl << checkPrime(38);
-
+    cout << "True Primne: " << checkPrime(997) << endl << "False Prime: " << checkPrime(38) << endl;
+    cout << "False Consonant: " << checkConsonant('E') << endl;
+    cout << checkAscending("111111567811") << endl;
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
+    int countArry[100];
 
 
 	return 0;
@@ -143,6 +147,7 @@ int stringRemoveNonAlphaNum(char *str) {
     return loops;
 }
 
+// Get date key
 string getDateKey(){
     std::time_t rawtime;
     std::tm* timeinfo;
@@ -179,6 +184,7 @@ string getDateKey(){
     return finalString;
 }
 
+// Alec
 long long int getFrac(long double input, int numDigits) {
     long double result;
     long double intpart;
@@ -196,6 +202,7 @@ long long int getFrac(long double input, int numDigits) {
     return round(fractpart);
 }
 
+// Check if a number is prime
 bool checkPrime(int number){
     int flag = 1;
     for (int i = 2; i <= sqrt(number) / 2; i++) {  
@@ -206,7 +213,40 @@ bool checkPrime(int number){
     } 
     if (flag == 1) { 
         return true;
-    } else { 
-        return false;
     } 
+    return false; 
+}
+
+// Check if a letter is a consonant
+bool checkConsonant(char letter){
+    char vowels[5] = {'a', 'e', 'i', 'o', 'u'};
+    int i;
+    for (i = 0; i < 5; i++){
+        if (letter == vowels[i] || letter == toupper(vowels[i])){
+            return false;
+        }
+    }
+    return true;
+}
+
+// Check if there is a series of four ascending numbers in the date key
+bool checkAscending(string numString){
+    char numStringArry[120];
+    int numIntArry[120];
+    int i,j;
+    strcpy(numStringArry, numString.c_str());
+    for (i = 0; i < 12; i++){
+        numIntArry[i] = numStringArry[i] - '0';
+    }
+    for (j = 0; j < 9; j++){
+        if ( ((numIntArry[j] + 1) == numIntArry[j+1]) && ((numIntArry[j] + 2) == numIntArry[j+2]) && ((numIntArry[j] + 3) == numIntArry[j+3])){
+            return true;
+        }
+    }
+    return false;
+}
+
+// count how many of certain characters exist in a string
+void count(string input, char checkArry[], int countArry[]){
+
 }

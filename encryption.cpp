@@ -42,7 +42,7 @@ void inputs(string *email, string *message, string *receivedKey, int *type) { //
 	cout << "Enter message: ";
 	cin >> *message;
 	} else if (*type == 2){
-	cout << "Enter message: ";
+	cout << "Enter date key: ";
 	cin >> *message;
 	cout << "Enter keyword: ";
 	cin >> *receivedKey;

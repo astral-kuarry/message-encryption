@@ -23,7 +23,7 @@ int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
 long long getFrac(long double input, int numDigits);
 bool checkPrime(int number);
-
+bool checkConsonant(char letter);
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -41,8 +41,8 @@ int main() {
     cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
     cout << getDateKey() << endl;
-    cout << checkPrime(997) << endl << checkPrime(38);
-
+    cout << checkPrime(997) << endl << checkPrime(38) << endl;
+    cout << checkConsonant('E') << endl;
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
 
@@ -210,7 +210,17 @@ bool checkPrime(int number){
     } 
     if (flag == 1) { 
         return true;
-    } else { 
-        return false;
     } 
+    return false; 
+}
+
+bool checkConsonant(char letter){
+    char vowels[5] = {'a', 'e', 'i', 'o', 'u'};
+    int i;
+    for (i = 0; i < 5; i++){
+        if (letter == vowels[i] || letter == toupper(vowels[i])){
+            return false;
+        }
+    }
+    return true;
 }

@@ -8,6 +8,7 @@
 #include <iostream>
 #include <stdio.h>
 #include "username.h"
+#include "base64.h"
 #include "stdlib.h"
 #include <string>
 #include <array>
@@ -31,9 +32,11 @@ long long int getFrac(long double input, int numDigits);
 void swap(int *xp, int *yp);
 void sort(int arr[], int n);
 void printArray(int arr[], int size);
+void test();
 
 
 int main() {
+	//test();
 	string email;
 	string message;
 	string receivedKey;
@@ -41,44 +44,10 @@ int main() {
 	string dateKey;
 	int type;
 	username part2;
-	//inputs(&email, &message, &receivedKey, &type);
-	//textKey = getTextKey(message);
-	//dateKey = getDateKey();
-    int mark[5] = {19, 10, 8, 17, 9};
-    sort(mark, 5);
-    printArray(mark, 5);
-    string s = "THIS IS A TEST";
-    int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
-    int size = sizeof(test)/sizeof(test[0]);
-    cout << part2.intToString(test, size) << "\n";
-    cout << getTextKey("People who have met their online friends, what made you instantly regret it?") << "\n";
-    cout << getTextKey("What are some things you realised too late in life?") << "\n";
-    cout << getTextKey("\"Bott!23as is the meat in a ferrari sandwitch ")<< "\n";
-    cout << getTextKey("  test§¶•hªº–≠ test ")<< "\n";
-    cout << getTextKey("Formula.1.2019x09.Austria.Race.SkyF1HD.Smcgill1969")<< "\n";
-    cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
-    cout << getTextKey("  123werwerwere")<< "\n";
-    cout << getDateKey() << endl;
-    cout << "True Prime: " << part2.checkPrime(997) << endl << "False Prime: " << part2.checkPrime(38) << endl;
-    cout << "False Consonant: " << part2.checkConsonant('E') << endl;
-    cout << part2.checkAscending("111111567811") << endl;
-    //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
-    //cout << "\n" << encoded << "\n";
-    int countArry1[100];
-    int countArry3[100];
-    int countArryChar[100];
-    int checkArry3[5] = {127,787,278,700};
-    int checkArry1[5] = {1,2,3,4};
-    char checkArry[5] = {'A','G','R','T'};
-    part2.countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
-    part2.countInt("12787687278", 11, checkArry3, 4, countArry3, 2);
-    part2.countChar("AGGGGG", 7, checkArry, 4, countArryChar);
-    printArray(countArry1, 4);
-    printArray(countArry3, 4);
-    for (int i; i < 4; i++){
-        cout << countArryChar[i];
-    }
-    cout << endl;
+	inputs(&email, &message, &receivedKey, &type);
+	textKey = getTextKey(message);
+	dateKey = getDateKey();
+    
 
 	return 0;
 }
@@ -261,3 +230,42 @@ void printArray(int arr[], int size)
     printf("\n"); 
 } 
 
+void test(){
+	username part2;
+	int mark[5] = {19, 10, 8, 17, 9};
+    sort(mark, 5);
+    printArray(mark, 5);
+    string s = "THIS IS A TEST";
+    int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
+    int size = sizeof(test)/sizeof(test[0]);
+    cout << part2.intToString(test, size) << "\n";
+    cout << getTextKey("People who have met their online friends, what made you instantly regret it?") << "\n";
+    cout << getTextKey("What are some things you realised too late in life?") << "\n";
+    cout << getTextKey("\"Bott!23as is the meat in a ferrari sandwitch ")<< "\n";
+    cout << getTextKey("  test§¶•hªº–≠ test ")<< "\n";
+    cout << getTextKey("Formula.1.2019x09.Austria.Race.SkyF1HD.Smcgill1969")<< "\n";
+    cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
+    cout << getTextKey("  123werwerwere")<< "\n";
+    cout << getDateKey() << endl;
+    cout << "True Prime: " << part2.checkPrime(997) << endl << "False Prime: " << part2.checkPrime(38) << endl;
+    cout << "False Consonant: " << part2.checkConsonant('E') << endl;
+    cout << part2.checkAscending("111111567811") << endl;
+    //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
+    //cout << "\n" << encoded << "\n";
+    int countArry1[100];
+    int countArry3[100];
+    int countArryChar[100];
+    int checkArry3[5] = {127,787,278,700};
+    int checkArry1[5] = {1,2,3,4};
+    char checkArry[5] = {'A','G','R','T'};
+    part2.countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
+    part2.countInt("12787687278", 11, checkArry3, 4, countArry3, 2);
+    part2.countChar("AGGGGG", 7, checkArry, 4, countArryChar);
+    printArray(countArry1, 4);
+    printArray(countArry3, 4);
+    for (int i; i < 4; i++){
+        cout << countArryChar[i];
+    }
+    cout << endl;
+	exit(1);
+}

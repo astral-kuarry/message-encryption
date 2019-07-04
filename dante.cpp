@@ -25,7 +25,8 @@ long long getFrac(long double input, int numDigits);
 bool checkPrime(int number);
 bool checkConsonant(char letter);
 bool checkAscending(string numString);
-void count(string input, char checkArry[], int countArry[]);
+void countInt(string input, int inputSize, int checkArry[], int checkArrysize, int countArry[], int type);
+void countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]);
 
 int main() {
     int mark[5] = {19, 10, 8, 17, 9};
@@ -43,12 +44,19 @@ int main() {
     cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
     cout << getDateKey() << endl;
-    cout << "True Primne: " << checkPrime(997) << endl << "False Prime: " << checkPrime(38) << endl;
+    cout << "True Prime: " << checkPrime(997) << endl << "False Prime: " << checkPrime(38) << endl;
     cout << "False Consonant: " << checkConsonant('E') << endl;
     cout << checkAscending("111111567811") << endl;
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
-    int countArry[100];
+    int countArry1[100];
+    int countArry3[100];
+    int checkArry3[5] = {127,787,278,700};
+    int checkArry1[5] = {1,2,3,4};
+    countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
+    countInt("12787687278", 11, checkArry3, 4, countArry3, 2);
+    printArray(countArry1, 4);
+    printArray(countArry3, 4);
 
 
 	return 0;
@@ -252,6 +260,43 @@ bool checkAscending(string numString){
 }
 
 // count how many of certain characters exist in a string
-void count(string input, char checkArry[], int countArry[]){
+// type is what type of count you want. 1 = 1 digit int, 2 = 3 digit int
+void countInt(string input, int inputSize, int checkArry[], int checkArrysize, int countArry[], int type){
+    int i,j,k,m;
+    int count;
+    int intInputArry[100];
+    int threeDigNum[3];
+    for (i = 0; i < inputSize; i++){
+        intInputArry[i] = input[i] - '0';
+    }
+    if (type == 1){
+        for (j = 0; j < checkArrysize; j++){
+            count = 0;
+            for (k = 0; k < inputSize; k++){
+                if (checkArry[j] == intInputArry[k]){
+                    count++;
+                }
+            }
+            countArry[j] = count;
+        }
+    } else if (type == 2){
+        for (j = 0; j < checkArrysize; j++){
+            count = 0;
+            for (m = 2; m >= 0; m--) {
+                threeDigNum[m] = checkArry[j] % 10;
+                checkArry[j] /= 10;
+            }
+            for (k = 0; k < inputSize; k++){
+                if (intInputArry[k] == threeDigNum[0] && intInputArry[k+1] == threeDigNum[1] && intInputArry[k+2] == threeDigNum[2]){
+                    count++;
+                }
+            }
+            countArry[j] = count;
+        }
+    }
+    return; 
+}
+
+void countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]){
 
 }

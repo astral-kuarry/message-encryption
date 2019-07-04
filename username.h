@@ -44,6 +44,7 @@ public:
 	bool checkEvenA(string text);
 	bool checkEvenB(string text);
 	bool checkEvenC(string text);
+	int intToNum(int arry[], int size);
 private:
 
 };

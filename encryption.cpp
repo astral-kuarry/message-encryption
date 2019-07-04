@@ -9,6 +9,7 @@
 #include <stdio.h>
 #include "username.h"
 #include "base64.h"
+#include "helpers.h"
 #include "stdlib.h"
 #include <string>
 #include <array>
@@ -29,14 +30,11 @@ string getTextKey(string message);
 int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
 long long int getFrac(long double input, int numDigits);
-void swap(int *xp, int *yp);
-void sort(int arr[], int n);
-void printArray(int arr[], int size);
 void test();
 
 
 int main() {
-	//test();
+	test();
 	string email;
 	string message;
 	string receivedKey;
@@ -207,34 +205,12 @@ long long int getFrac(long double input, int numDigits) {
     return round(fractpart);
 }
 
-void swap(int *xp, int *yp) 
-{ 
-    int temp = *xp; 
-    *xp = *yp; 
-    *yp = temp; 
-} 
-// A function to implement bubble sort 
-void sort(int arr[], int n) 
-{ 
-   int i, j; 
-   for (i = 0; i < n-1; i++)       
-       for (j = 0; j < n-i-1; j++)  
-           if (arr[j] > arr[j+1]) 
-              swap(&arr[j], &arr[j+1]); 
-} 
-void printArray(int arr[], int size) 
-{ 
-    int i; 
-    for (i=0; i < size; i++) 
-        printf("%d ", arr[i]); 
-    printf("\n"); 
-} 
-
 void test(){
 	username part2;
+	helpers help;
 	int mark[5] = {19, 10, 8, 17, 9};
-    sort(mark, 5);
-    printArray(mark, 5);
+    help.sort(mark, 5);
+    help.printArray(mark, 5);
     string s = "THIS IS A TEST";
     int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
     int size = sizeof(test)/sizeof(test[0]);
@@ -253,19 +229,24 @@ void test(){
     //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
     //cout << "\n" << encoded << "\n";
     int countArry1[100];
-    int countArry3[100];
+    int countArry3[200];
     int countArryChar[100];
-    int checkArry3[5] = {127,787,278,700};
+    int checkArry3[146] = {101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997};
     int checkArry1[5] = {1,2,3,4};
     char checkArry[5] = {'A','G','R','T'};
     part2.countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
-    part2.countInt("12787687278", 11, checkArry3, 4, countArry3, 2);
+    part2.countInt("12787687278", 11, checkArry3, 146, countArry3, 2);
     part2.countChar("AGGGGG", 7, checkArry, 4, countArryChar);
-    printArray(countArry1, 4);
-    printArray(countArry3, 4);
+    help.printArray(countArry1, 4);
+    help.printArray(countArry3, 146);
     for (int i; i < 4; i++){
         cout << countArryChar[i];
     }
     cout << endl;
+	printf("CCCB:   %s\n",part2.invertNumToLet("3332").c_str());
+    string letters = "CURBATM";
+    string letterscheck = part2.invertNumToLet("398472023");
+    string check = part2.excise(letters,letterscheck);
+    printf("ans: %s\n",check.c_str());
 	exit(1);
 }

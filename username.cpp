@@ -1,10 +1,3 @@
-/*
- * username.cpp
- *
- *  Created on: Jun 28, 2019
- *      Author: dsana
- */
-
 #include "username.h"
 #include <iostream>
 #include <string>
@@ -26,10 +19,6 @@ username::~username() {
 	// TODO Auto-generated destructor stub
 }
 
-//int username::testFunc(){
-//	return 2;
-//}
-// Check if a number is prime
 bool username::checkPrime(int number){
     int flag = 1;
     for (int i = 2; i <= sqrt(number) / 2; i++) {  

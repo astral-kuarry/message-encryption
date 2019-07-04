@@ -9,7 +9,7 @@
 #include <math.h>
 #include <sstream>
 #include <iomanip>
-
+using namespace std;
 username::username() {
 	//constructor
 
@@ -198,7 +198,7 @@ string username::deleteDig (string input, int numDigits){
 
 string username::invertNumToLet(string input){
     //printf("Input: %s\n",input.c_str());
-    char inputArry[input.size()+1];
+    char inputArry[100];
     strcpy(inputArry, input.c_str());
     char newArry[] = {0};
     int size = sizeof(inputArry)/sizeof(inputArry[0]) - 1;
@@ -391,9 +391,42 @@ string username::excise(string input, string excise){
     return str;
 }
 
-
+int username::intToNum(int arry[], int size){
+    int finalNumber = 0;
+for (int i = 0; i < size; i++) {
+    int num = arry[i];
+    if (num != 0) {
+        while (num > 0) {
+            finalNumber *= 10;
+            num /= 10;
+        }
+        finalNumber += arry[i];
+    } else {
+        finalNumber *= 10;
+    }
+    
+}
+return finalNumber;
+}
 bool username::checkOdd1(string date){
-    return true;
+    int dateIntArry[100];
+    int threeDigArry[10];
+    int threeDigInt;
+    int i,j,k;
+    for (i = 0; i < 12; i++){
+        dateIntArry[i] = date[i] - '0';
+    }
+    for (j = 0; j < 10; j++){
+        threeDigArry[0] = dateIntArry[j];
+        threeDigArry[1] = dateIntArry[j+1]; 
+        threeDigArry[2] = dateIntArry[j+2]; 
+        threeDigInt = intToNum(threeDigArry, 3);
+        if (checkPrime(threeDigInt)){
+            return true;
+        }
+    }
+    
+    return false;
 }
 
 bool username::checkOdd2(string date){

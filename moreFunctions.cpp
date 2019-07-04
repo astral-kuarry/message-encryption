@@ -26,19 +26,20 @@ string deleteDig (string input, int numDigits);
 string getTextKey(string message);
 int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
-
+string invertNumToLet(string input);
+string excise(string input, string excise);
 
 
 int test();
 
 
 int main() {
-    //string check = deleteDig("ABCDEF",-2); 
-    //printf("ans: %s\n",check.c_str());
-    //getDateKey();
-    long long int check = getFrac(1.9899471238433,15);
-    printf("ans: %lld\n",check);
 
+    //printf("CCCB:   %s\n",invertNumToLet("3332").c_str());
+    string letters = "CURBATM";
+    string letterscheck = invertNumToLet("398472023");
+    string check = excise(letters,letterscheck);
+    printf("ans: %s\n",check.c_str());
 	return 0;
 }
 
@@ -178,8 +179,7 @@ string getTextKey(string message){
     string finalString = string(finalArry);
     return finalString;
 }
-int stringRemoveNonAlphaNum(char *str)
-{
+int stringRemoveNonAlphaNum(char *str){
     unsigned long i = 0;
     unsigned long j = 0;
     char c;
@@ -198,7 +198,6 @@ int stringRemoveNonAlphaNum(char *str)
     }
    // str[j] = '\0';
     return loops;
-//    return str;
 }
 string getDateKey(){
     std::time_t rawtime;
@@ -240,4 +239,197 @@ string getDateKey(){
     printf("ans:%d\n",dateKeyInt);
 
     return "s";
+}
+string invertNumToLet(string input){
+    //printf("Input: %s\n",input.c_str());
+    char inputArry[input.size()+1];
+    strcpy(inputArry, input.c_str());
+    char newArry[] = {0};
+    int size = sizeof(inputArry)/sizeof(inputArry[0]) - 1;
+    int i = 0;
+    int j = 0;
+    //printf("size: %d\n",size);
+
+    while (i < size) {
+       // printf("%d value: %c\n",i,inputArry[i]);
+        if (inputArry[i] == 0) {
+            i++;
+        } else if ((inputArry[i] == '1') && (i != size - 1)){
+            //printf("check1\n");
+            switch(inputArry[i+1]) {
+                case '0' :
+                    newArry[j] = 'J';
+                    j++;
+                    //printf("check1111:%c at j value: %d\n",newArry[j],j);
+                    break;
+                case '1' :
+                    newArry[j] = 'K';
+                    j++;
+                    break;
+                case '2' :
+                    newArry[j] = 'L';
+                    j++;
+                    break;
+                case '3' :
+                    newArry[j] = 'M';
+                    j++;
+                    break;
+                case '4' :
+                    newArry[j] = 'N';
+                    j++;
+                    break;
+                case '5' :
+                    newArry[j] = 'O';
+                    j++;
+                    break;
+                case '6' :
+                    newArry[j] = 'P';
+                    j++;
+                    break;
+                case '7' :
+                    newArry[j] = 'Q';
+                    j++;
+                    break;
+                case '8' :
+                    newArry[j] = 'R';
+                    j++;
+                    break;
+                case '9' :
+                    newArry[j] = 'S';
+                    j++;
+                    break;
+            }
+            i += 2;
+        } else if ((inputArry[i] == '2') && (inputArry[i+1] != '\0') && (inputArry[i+1] != '7' || inputArry[i+1] != '8' || inputArry[i+1] != '9')){
+            //printf("check2\n");
+            switch(inputArry[i+1]) {
+                case '0' :
+                    newArry[j] = 'T';
+                    j++;
+                    break;
+                case '1' :
+                    newArry[j] = 'U';
+                    j++;
+                    break;
+                case '2' :
+                    newArry[j] = 'V';
+                    j++;
+                    break;
+                case '3' :
+                    newArry[j] = 'W';
+                    j++;
+                    break;
+                case '4' :
+                    newArry[j] = 'X';
+                    j++;
+                    break;
+                case '5' :
+                    newArry[j] = 'Y';
+                    j++;
+                    break;
+                case '6' :
+                    newArry[j] = 'Z';
+                    j++;
+                    break;
+            }
+            i += 2;
+
+        } else {
+            //printf("check0\n");
+            switch(inputArry[i]) {
+                case '1' :
+                    newArry[j] = 'A';
+                    j++;
+                    break;
+                case '2' :
+                    newArry[j] = 'B';
+                    j++;
+                    break;
+                case '3' :
+                    newArry[j] = 'C';
+                    j++;
+                    break;
+                case '4' :
+                    newArry[j] = 'D';
+                    j++;
+                    break;
+                case '5' :
+                    newArry[j] = 'E';
+                    j++;
+                    break;
+                case '6' :
+                    newArry[j] = 'F';
+                    j++;
+                    break;
+                case '7' :
+                    newArry[j] = 'G';
+                    j++;
+                    break;
+                case '8' :
+                    newArry[j] = 'H';
+                    j++;
+                    break;
+                case '9' :
+                    newArry[j] = 'I';
+                    j++;
+                    break;
+            }
+            i++;
+        }
+    }
+    //printf("checkkkk: %c\n",newArry[0]);
+    string str(newArry);
+    return str;
+}
+string excise(string input, string excise){
+    char inputArry[input.size()+1];
+    strcpy(inputArry, input.c_str());
+    char exArry[excise.size()+1];
+    strcpy(exArry, excise.c_str());
+
+
+    int size = sizeof(inputArry)/sizeof(inputArry[0]) - 1;
+    int sizeEx = sizeof(exArry)/sizeof(exArry[0]) - 1;
+    //printf("sizeEx: %d\n",sizeEx);
+    int j = 0;
+    int k = 0;
+    char newArry [30] = {'0'};
+    int check = 0;
+
+    for (int i = 0; i < size; i++) {
+       // printf("checkI: %d\n",i);
+        for (int j = 0; j < sizeEx; j++){
+          //  printf("J:%d\n",j);
+            if (inputArry[i] == exArry[j]) {
+              //  printf("inputArry[%d]:%c exArry[%d]:%c\n",i,inputArry[i],j,exArry[j]);
+                //newArry[k] = inputArry[i];
+                //printf("newArry[%d]:%c\n",k,newArry[k]);
+                //k++;
+                check = 1;
+
+            }
+        }
+        /*
+        while ((j < sizeEx) || (check == 0)) {
+            printf("inputArry[%d]:%c exArry[%d]:%c\n",i,inputArry[i],j,exArry[j]);
+            if (inputArry[i] == exArry[j]) {
+                check = 1;
+                printf("I hate C\n");
+            }
+            j++;
+        }
+        */
+        
+        if (check == 0) {
+            newArry[k] = inputArry[i];
+            k++;
+        }
+        check = 0;
+        //j = 0;
+        
+        
+    }
+    
+    string str(newArry);
+    return str;
 }

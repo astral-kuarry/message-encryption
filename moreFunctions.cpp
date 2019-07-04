@@ -570,28 +570,28 @@ string getTableKey(string date, string text){
 
     if (dateNum % 2 != 0){
         //ODD
-        if ((checkOdd1() && checkOdd2()) || (checkOdd2() && checkOdd3()) || (checkOdd1() && checkOdd3())){
-            if (checkOddA() && checkOddB() && checkOddC()){
+        if ((checkOdd1(date) && checkOdd2(date) || (checkOdd1(date) && checkOdd3(date)) || (checkOdd1(date)() && checkOdd3(date))){
+            if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //4E
                 line1 = strcat(excise(text,vowels),text);
                 line2 = invertOrder(date);
                 result = strcat(line1,line2);
-            } else if ((checkOddA() && checkOddB()) || (checkOddB() && checkOddC()) || (checkOddA() && checkOddC())) {
+            } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //4D
                 line1 = excise(text,vowels);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkOddA()){
+            } else if (checkOddA(text)){
                 //4A
                 line1 = excise(text,vowels);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkOddB()){
+            } else if (checkOddB(text)){
                 //4B
                 line1 = invertNumToLet(date);
                 line2 = invertLetToNum(text);
                 result = strcat(line1,line2);
-            } else if (checkOddC()){
+            } else if (checkOddC(text)){
                 //4C
                 line1 = deleteDig(date,-5);
                 line2 = digitLetShift(text,2);
@@ -602,28 +602,28 @@ string getTableKey(string date, string text){
                 line2 = digitLetShift(text,4);
                 result = strcat(line1,line2);
             }
-        } else if (checkOdd1()){
-            if (checkOddA() && checkOddB() && checkOddC()){
+        } else if (checkOdd1(date){
+            if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //1E
                 line1 = excise(text,letsRSTE);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if ((checkOddA() && checkOddB()) || (checkOddB() && checkOddC()) || (checkOddA() && checkOddC())) {
+            } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //1D
                 line1 = digitNumShift(date,1);
                 line2 = text;
                 result = strcat(line1,line2); 
-            } else if (checkOddA()){
+            } else if (checkOddA(text)){
                 //1A
                 line1 = strcat(invertOrder(text),text);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkOddB()){
+            } else if (checkOddB(text)){
                 //1B
                 line1 = text;
                 line2 = excise(date,nums1345);
                 result = strcat(line1,line2);
-            } else if (checkOddC()){
+            } else if (checkOddC(text)){
                 //1C
                 line1 = invertOrder(date);
                 line2 = deleteDig(digitLetShift(text,4),-2);
@@ -634,28 +634,28 @@ string getTableKey(string date, string text){
                 line2 = invertOrder(text);
                 result = strcat(line1,line2);
             }
-        } else if (checkOdd2()){
-            if (checkOddA() && checkOddB() && checkOddC()){
+        } else if (checkOdd2(date)){
+            if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //2E
                 line1 = strcat(invertNumToLet(date),date);
                 line2 = text;
                 result = strcat(line1,line2);
-            } else if ((checkOddA() && checkOddB()) || (checkOddB() && checkOddC()) || (checkOddA() && checkOddC())) {
+            } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //2D
                 line1 = deleteDig(invertOrder(text),-3);
                 line2 = digitNumShift(date,2);
                 result = strcat(line1,line2);
-            } else if (checkOddA()){
+            } else if (checkOddA(text)){
                 //2A
                 line1 = digitNumShift(date,3);
                 line2 = digitLetShift(text,-2);
                 result = strcat(line1,line2);
-            } else if (checkOddB()){
+            } else if (checkOddB(text)){
                 //2B
                 line1 = invertOrder(text);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkOddC()){
+            } else if (checkOddC(text)){
                 //2C
                 line1 = excise(date,oddNums);
                 line2 = digitLetShift(text,1);
@@ -666,28 +666,28 @@ string getTableKey(string date, string text){
                 line2 = invertLetToNum(text);
                 result = strcat(line1,line2);
             }
-        } else if (checkOdd3()){
-            if (checkOddA() && checkOddB() && checkOddC()){
+        } else if (checkOdd3(date)){
+            if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //3E
                 line1 = date;
                 line2 = text;
                 result = strcat(line1,line2);
-            } else if ((checkOddA() && checkOddB()) || (checkOddB() && checkOddC()) || (checkOddA() && checkOddC())) {
+            } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //3D
                 line1 = text;
                 line2 = excise(date,primeNums);
                 result = strcat(line1,line2);
-            } else if (checkOddA()){
+            } else if (checkOddA(text)){
                 //3A
                 line1 = deleteDig(text,-3);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkOddB()){
+            } else if (checkOddB(text)){
                 //3B
                 line1 = text;
                 line2 = strcat(invertOrder(date),excise(date,evenNums));
                 result = strcat(line1,line2);
-            } else if (checkOddC()){
+            } else if (checkOddC(text)){
                 //3C
                 line1 = digitLetShift(text,4);
                 line2 = strcat(date,text)
@@ -699,27 +699,27 @@ string getTableKey(string date, string text){
                 result = strcat(line1,line2);
             }
         } else {
-            if (checkOddA() && checkOddB() && checkOddC()){
+            if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //5E
                 line1 = deleteDig(date,-3);
                 line2 = invertOrder(digitLetShift(text,3));
                 result = strcat(line1,line2);
-            } else if ((checkOddA() && checkOddB()) || (checkOddB() && checkOddC()) || (checkOddA() && checkOddC())) {
+            } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //5D
                 line1 = invertNumToLet(date);
                 line2 = invertLetToNum(excise(text,vowels));
                 result = strcat(line1,line2);
-            } else if (checkOddA()){
+            } else if (checkOddA(text)){
                 //5A
                 line1 = invertLetToNum(strcat(text,invertNumToLet(date)));
                 line2 = text;
                 result = strcat(line1,line2);
-            } else if (checkOddB()){
+            } else if (checkOddB(text)){
                 //5B
                 line1 = excise(date,nums7890);
                 line2 = excise(text,letsAEIJLOU);
                 result = strcat(line1,line2);
-            } else if (checkOddC()){
+            } else if (checkOddC(text)){
                 //5C
                 line1 = deleteDig(date,-3);
                 line2 = digitLetShift(text,-3);
@@ -733,28 +733,28 @@ string getTableKey(string date, string text){
         }
     } else {
         //EVEN
-        if ((checkEven1() && checkEven2()) || (checkEven2() && checkEven3()) || (checkEven1() && checkEven3())){
-            if (checkEvenA() && checkEvenB() && checkEvenC()){
+        if ((checkEven1(date) && checkEven2(date)) || (checkEven2(date) && checkEven3(date)) || (checkEven1(date) && checkEven3(date))){
+            if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //4E
                 line1 = excise(text,invertNumToLet(date));
                 line2 = digitNumShift(date,-4);
                 result = strcat(line1,line2);
-            } else if ((checkEvenA() && checkEvenB()) || (checkEvenB() && checkEvenC()) || (checkEvenA() && checkEvenC())) {
+            } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //4D
                 line1 = excise(date,nums0128);
                 line2 = digitLetShift(text,4);
                 result = strcat(line1,line2);
-            } else if (checkEvenA()){
+            } else if (checkEvenA(text)){
                 //4A
                 line1 = strcat(excise(text,vowels),text);
                 line2 = invertOrder(date);
                 result = strcat(line1,line2);
-            } else if (checkEvenB()){
+            } else if (checkEvenB(text)){
                 //4B
                 line1 = deleteDig(text,3);
                 line2 = invertOrder(date);
                 result = strcat(line1,line2);
-            } else if (checkEvenC()){
+            } else if (checkEvenC(text)){
                 //4C
                 line1 = deleteDig(date,3);
                 line2 = invertOrder(digitLetShift(text,3));
@@ -765,28 +765,28 @@ string getTableKey(string date, string text){
                 line2 = invertOrder(deleteDig(text,-1));
                 result = strcat(line1,line2);
             }
-        } else if (checkEven1()){
-            if (checkEvenA() && checkEvenB() && checkEvenC()){
+        } else if (checkEven1(date)){
+            if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //1E
                 line1 = text;
                 line2 = excise(date,nums014689);
                 result = strcat(line1,line2);
-            } else if ((checkEvenA() && checkEvenB()) || (checkEvenB() && checkEvenC()) || (checkEvenA() && checkEvenC())) {
+            } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //1D
                 line1 = excise(text,letsMNOP);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkEvenA()){
+            } else if (checkEvenA(text)){
                 //1A
                 line1 = invertOrder(text);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkEvenB()){
+            } else if (checkEvenB(text)){
                 //1B
                 line1 = digitNumShift(date,-3);
                 line2 = digitLetShift(text,-3);
                 result = strcat(line1,line2);
-            } else if (checkEvenC()){
+            } else if (checkEvenC(text)){
                 //1C
                 line1 = invertOrder(date);
                 line2 = invertOrder(text);
@@ -797,28 +797,28 @@ string getTableKey(string date, string text){
                 line2 = excise(date,evenNums);
                 result = strcat(line1,line2);
             }
-        } else if (checkEven2()){
-            if (checkEvenA() && checkEvenB() && checkEvenC()){
+        } else if (checkEven2(date)){
+            if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //2E
                 line1 = digitNumShift(date,1);
                 line2 = digitLetShift(text,-2);
                 result = strcat(line1,line2);
-            } else if ((checkEvenA() && checkEvenB()) || (checkEvenB() && checkEvenC()) || (checkEvenA() && checkEvenC())) {
+            } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //2D
                 line1 = strcat(invertOrder(text),text);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkEvenA()){
+            } else if (checkEvenA(text)){
                 //2A
                 line1 = deleteDig(invertOrder(text),-3);
                 line2 = digitNumShift(date,2);
                 result = strcat(line1,line2);
-            } else if (checkEvenB()){
+            } else if (checkEvenB(text)){
                 //2B
                 line1 = excise(date,evenNums);
                 line2 = digitLetShift(text,3);
                 result = strcat(line1,line2);
-            } else if (checkEvenC()){
+            } else if (checkEvenC(text)){
                 //2C
                 line1 = text;
                 line2 = excise(date,primeNums);
@@ -829,28 +829,28 @@ string getTableKey(string date, string text){
                 line2 = text;
                 result = strcat(line1,line2);
             }
-        } else if (checkEven3()){
-            if (checkEvenA() && checkEvenB() && checkEvenC()){
+        } else if (checkEven3(date)){
+            if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //3E
                 line1 = deleteDig(date,3);
                 line2 = digitLetShift(text,-1);
                 result = strcat(line1,line2);
-            } else if ((checkEvenA() && checkEvenB()) || (checkEvenB() && checkEvenC()) || (checkEvenA() && checkEvenC())) {
+            } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //3D
                 line1 = excise(date,nums01694);
                 line2 = digitLetShift(text,4);
                 result = strcat(line1,line2);
-            } else if (checkEvenA()){
+            } else if (checkEvenA(text)){
                 //3A
                 line1 = excise(text,vowels);
                 line2 = date;
                 result = strcat(line1,line2);
-            } else if (checkEvenB()){
+            } else if (checkEvenB(text)){
                 //3B
                 line1 = text;
                 line2 = excise(date,primeNums);
                 result = strcat(line1,line2);
-            } else if (checkEvenC()){
+            } else if (checkEvenC(text)){
                 //3C
                 line1 = text;
                 line2 = strcat(invertOrder(date),excise(date,oddNums));
@@ -862,27 +862,27 @@ string getTableKey(string date, string text){
                 result = strcat(line1,line2);
             }
         } else {
-            if (checkEvenA() && checkEvenB() && checkEvenC()){
+            if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //5E
                 line1 = invertOrder(invertLetToNum(text));
                 line2 = invertNumToLet(invertOrder(date));
                 result = strcat(line1,line2);
-            } else if ((checkEvenA() && checkEvenB()) || (checkEvenB() && checkEvenC()) || (checkEvenA() && checkEvenC())) {
+            } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //5D
                 line1 = deleteDig(date,2);
                 line2 = digitLetShift(text,6);
                 result = strcat(line1,line2);
-            } else if (checkEvenA()){
+            } else if (checkEvenA(text)){
                 //5A
                 line1 = excise(date,nums01234);
                 line2 = digitLetShift(text,4);
                 result = strcat(line1,line2);
-            } else if (checkEvenB()){
+            } else if (checkEvenB(text)){
                 //5B
                 line1 = strcat(invertOrder(text),text);
                 line2 = strcat(date,invertOrder(date));
                 result = strcat(line1,line2);
-            } else if (checkEvenC()){
+            } else if (checkEvenC(text)){
                 //5C
                 line1 = strcat(invertOrder(text),text);
                 line2 = date;

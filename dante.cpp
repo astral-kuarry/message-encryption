@@ -51,12 +51,20 @@ int main() {
     //cout << "\n" << encoded << "\n";
     int countArry1[100];
     int countArry3[100];
+    int countArryChar[100];
     int checkArry3[5] = {127,787,278,700};
     int checkArry1[5] = {1,2,3,4};
+    char checkArry[5] = {'A','G','R','T'};
     countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
     countInt("12787687278", 11, checkArry3, 4, countArry3, 2);
+    countChar("AGGGGG", 7, checkArry, 4, countArryChar);
     printArray(countArry1, 4);
     printArray(countArry3, 4);
+    for (int i; i < 4; i++){
+        cout << countArryChar[i];
+    }
+    cout << endl;
+    
 
 
 	return 0;
@@ -298,5 +306,17 @@ void countInt(string input, int inputSize, int checkArry[], int checkArrysize, i
 }
 
 void countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]){
-
+    int i,j,k,m;
+    int count;
+    char charInputArry[inputSize+1];
+    strcpy(charInputArry, input.c_str());
+    for (j = 0; j < checkArrysize; j++){
+            count = 0;
+            for (k = 0; k < inputSize; k++){
+                if (checkArry[j] == charInputArry[k]){
+                    count++;
+                }
+            }
+            countArry[j] = count;
+        }
 }

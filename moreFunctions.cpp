@@ -11,6 +11,7 @@
 #include "stdlib.h"
 #include <math.h>
 #include <string>
+#include <sstream>
 
 using namespace std;
 
@@ -47,8 +48,10 @@ int main() {
     //string letterscheck = invertNumToLet("398472023");
     //string check = excise(letters,letterscheck);
     //printf("ans: %s\n",check.c_str());
-	
-    string check = "1111";
+	//              123456789012
+    string check = "YEAEBBOUBBBF";
+    bool bcheck = checkOddC(check);
+    printf("bcheck: %d\n",bcheck);
     //printf("check:%d",check1);
     return 0;
 }
@@ -540,29 +543,89 @@ void countChar(string input, int inputSize, char checkArry[], int checkArrysize,
             countArry[j] = count;
         }
 }
+//If more even numbers appear than odd
 bool checkOdd1(string date){
-    bool result;
-    return result;
+    int sumOdd = 0;
+    int sumEven = 0;
+    int countArryEven[100];
+    int checkArryEven[6]= {0,2,4,6,8};
+    int countArryOdd[100];
+    int checkArryOdd[6] = {1,3,5,7,9};
+
+    countInt(date, 12, checkArryEven, 5, countArryEven, 1);
+    countInt(date, 12, checkArryOdd, 5, countArryOdd, 1);
+
+    for (int i = 0; i < 5; i++){
+        sumOdd += countArryOdd[i];
+        sumEven += countArryEven[i];
+    }
+    if (sumEven > sumOdd){
+        return true;
+    } else {
+        return false;
+    }
 }
+//If the date key is a prime number
 bool checkOdd2(string date){
-    bool result;
-    return result;
+    stringstream changeThis(date); 
+    int dateNum = 0; 
+    changeThis >> dateNum;
+
+    return checkPrime(dateNum);
 }
+//If the average value of the sum of the elements of the date key is greater than 5.5
 bool checkOdd3(string date){
-    bool result;
-    return result;
+    char dateArr[date.size()+1];
+    strcpy(dateArr, date.c_str());
+    int sum = 0;
+
+    for (int i = 0; i < 12; i++){
+        sum += (dateArr[i] - 48);
+    }
+    printf("sum: %f\n",sum/12.0);
+    if (((double) (sum/12.0)) > 5.5){
+        return true;
+    } else {
+        return false;
+    }
 }
+//If text key has at least three occurrences any of: B,F,J,S,V
 bool checkOddA(string text){
-    bool result;
-    return result;
+    char checkArr[6]= {'B','F','J','S','V'};
+    int countArrChar[100];
+    countChar(text, 12, checkArr, 5, countArrChar);
+    for (int i = 0; i < 5; i++){
+        if (countArrChar[i] >= 3){
+            return true;
+        }
+    }
+    return false;
 }
+//If the text key contains an even number of vowels
 bool checkOddB(string text){
-    bool result;
-    return result;
+    char checkArr[6]= {'A','E','I','O','U'};
+    int countArrChar[100];
+    countChar(text, 12, checkArr, 5, countArrChar); 
+    int count = 0;
+    for (int i = 0; i < 5; i++){
+        count += countArrChar[i];
+    }
+    if ((count % 2) == 0){
+        return true;
+    } else {
+        return false;
+    }
 }
+//Using A=1, ... Z=26, if the sum of first two letters of the text key is less than or equal to 30
 bool checkOddC(string text){
-    bool result;
-    return result;
+    char textArr[text.size()+1];
+    strcpy(textArr, text.c_str());
+    int sum = (textArr[0]-64) + (textArr[1]-64);
+    if (sum <= 30){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 

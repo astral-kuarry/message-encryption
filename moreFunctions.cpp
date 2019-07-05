@@ -31,46 +31,25 @@ string excise(string input, string excise);
 bool checkPrime(int number);
 bool checkConsonant(char letter);
 bool checkAscending(string numString);
-string getTableKey(string date, string text);
 bool checkOdd1(string date);
 bool checkOdd2(string date);
 bool checkOdd3(string date);
 bool checkOddA(string text);
 bool checkOddB(string text);
 bool checkOddC(string text);
-bool checkEven1(string date);
-bool checkEven2(string date);
-bool checkEven3(string date);
-bool checkEvenA(string text);
-bool checkEvenB(string text);
-bool checkEvenC(string text);
-
-
-
-
-
-
-
-
-
-
-
-
-int test();
+void countInt(string input, int inputSize, int checkArry[], int checkArrysize, int countArry[], int type);
+void countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]);
 
 
 int main() {
 
-    //printf("CCCB:   %s\n",invertNumToLet("3332").c_str());
     //string letters = "CURBATM";
     //string letterscheck = invertNumToLet("398472023");
     //string check = excise(letters,letterscheck);
     //printf("ans: %s\n",check.c_str());
 	
     string check = "1111";
-    int check1 = stoi(check);
     //printf("check:%d",check1);
-    string checkk = getTableKey("10055554","blah");
     return 0;
 }
 
@@ -507,43 +486,88 @@ bool checkAscending(string numString){
     }
     return false;
 }
-bool checkOdd1(string date){
-    return;
-}
-bool checkOdd2(string date){
-    return;
-}
-bool checkOdd3(string date){
-    return;
-}
-bool checkOddA(string text){
-    return;
-}
-bool checkOddB(string text){
-    return;
-}
-bool checkOddC(string text){
-    return;
-}
-bool checkEven1(string date){
-    return;
-}
-bool checkEven2(string date){
-    return;
-}
-bool checkEven3(string date){
-    return;
-}
-bool checkEvenA(string text){
-    return;
-}
-bool checkEvenB(string text){
-    return;
-}
-bool checkEvenC(string text){
-    return;
+
+// count how many of certain characters exist in a string
+// type is what type of count you want. 1 = 1 digit int, 2 = 3 digit int
+void countInt(string input, int inputSize, int checkArry[], int checkArrysize, int countArry[], int type){
+    int i,j,k,m;
+    int count;
+    int intInputArry[100];
+    int threeDigNum[3];
+    for (i = 0; i < inputSize; i++){
+        intInputArry[i] = input[i] - '0';
+    }
+    if (type == 1){
+        for (j = 0; j < checkArrysize; j++){
+            count = 0;
+            for (k = 0; k < inputSize; k++){
+                if (checkArry[j] == intInputArry[k]){
+                    count++;
+                }
+            }
+            countArry[j] = count;
+        }
+    } else if (type == 2){
+        for (j = 0; j < checkArrysize; j++){
+            count = 0;
+            for (m = 2; m >= 0; m--) {
+                threeDigNum[m] = checkArry[j] % 10;
+                checkArry[j] /= 10;
+            }
+            for (k = 0; k < inputSize; k++){
+                if (intInputArry[k] == threeDigNum[0] && intInputArry[k+1] == threeDigNum[1] && intInputArry[k+2] == threeDigNum[2]){
+                    count++;
+                }
+            }
+            countArry[j] = count;
+        }
+    }
+    return; 
 }
 
+void countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]){
+    int i,j,k,m;
+    int count;
+    char charInputArry[inputSize+1];
+    strcpy(charInputArry, input.c_str());
+    for (j = 0; j < checkArrysize; j++){
+            count = 0;
+            for (k = 0; k < inputSize; k++){
+                if (checkArry[j] == charInputArry[k]){
+                    count++;
+                }
+            }
+            countArry[j] = count;
+        }
+}
+bool checkOdd1(string date){
+    bool result;
+    return result;
+}
+bool checkOdd2(string date){
+    bool result;
+    return result;
+}
+bool checkOdd3(string date){
+    bool result;
+    return result;
+}
+bool checkOddA(string text){
+    bool result;
+    return result;
+}
+bool checkOddB(string text){
+    bool result;
+    return result;
+}
+bool checkOddC(string text){
+    bool result;
+    return result;
+}
+
+
+
+/*
 string getTableKey(string date, string text){
     string vowels = "AEIOU";
     string oddNums = "13579";
@@ -566,11 +590,11 @@ string getTableKey(string date, string text){
     string line1 = "";
     string line2 = "";
     string temp = "";
-    string result = ""
+    string result = "";
 
     if (dateNum % 2 != 0){
         //ODD
-        if ((checkOdd1(date) && checkOdd2(date) || (checkOdd1(date) && checkOdd3(date)) || (checkOdd1(date)() && checkOdd3(date))){
+        if ((checkOdd1(date) && checkOdd2(date) || (checkOdd1(date) && checkOdd3(date)) || (checkOdd1(date) && checkOdd3(date))){
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //4E
                 line1 = strcat(excise(text,vowels),text);
@@ -899,3 +923,4 @@ string getTableKey(string date, string text){
     return result;
 
 }
+*/

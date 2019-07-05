@@ -412,27 +412,87 @@ int username::intToNum(int arry[], int size){
 
 //Checks if a 3 digit number in the date key is prime
 bool username::checkOdd1(string date){
-    return true;
+    int sumOdd = 0;
+    int sumEven = 0;
+    int countArryEven[100];
+    int checkArryEven[6]= {0,2,4,6,8};
+    int countArryOdd[100];
+    int checkArryOdd[6] = {1,3,5,7,9};
+
+    countInt(date, 12, checkArryEven, 5, countArryEven, 1);
+    countInt(date, 12, checkArryOdd, 5, countArryOdd, 1);
+
+    for (int i = 0; i < 5; i++){
+        sumOdd += countArryOdd[i];
+        sumEven += countArryEven[i];
+    }
+    if (sumEven > sumOdd){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool username::checkOdd2(string date){
-    return true;
+    stringstream changeThis(date); 
+    int dateNum = 0; 
+    changeThis >> dateNum;
+
+    return checkPrime(dateNum);
 }
 
 bool username::checkOdd3(string date){
-    return true;
+    char dateArr[date.size()+1];
+    strcpy(dateArr, date.c_str());
+    int sum = 0;
+
+    for (int i = 0; i < 12; i++){
+        sum += (dateArr[i] - 48);
+    }
+    printf("sum: %f\n",sum/12.0);
+    if (((double) (sum/12.0)) > 5.5){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool username::checkOddA(string text){
-    return true;
+    char checkArr[6]= {'B','F','J','S','V'};
+    int countArrChar[100];
+    countChar(text, 12, checkArr, 5, countArrChar);
+    for (int i = 0; i < 5; i++){
+        if (countArrChar[i] >= 3){
+            return true;
+        }
+    }
+    return false;
 }
 
 bool username::checkOddB(string text){
-    return true;
+    char checkArr[6]= {'A','E','I','O','U'};
+    int countArrChar[100];
+    countChar(text, 12, checkArr, 5, countArrChar); 
+    int count = 0;
+    for (int i = 0; i < 5; i++){
+        count += countArrChar[i];
+    }
+    if ((count % 2) == 0){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 bool username::checkOddC(string text){
-    return true;
+    char textArr[text.size()+1];
+    strcpy(textArr, text.c_str());
+    int sum = (textArr[0]-64) + (textArr[1]-64);
+    if (sum <= 30){
+        return true;
+    } else {
+        return false;
+    }
 }
 
 //If any three successive numbers of the date key form a 3-digit prime

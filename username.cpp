@@ -478,18 +478,22 @@ bool username::checkEven2(string date){
     return false;
 }
 
+//If at least three successive numbers in the date key are ordered ascendingly
 bool username::checkEven3(string date){
-    return true;
+    return checkAscending(date);
 }
 
+//If the third, fourth, and fifth letters are consonants
 bool username::checkEvenA(string text){
-    return true;
+    return checkConsonant(text[2]) && checkConsonant(text[3]) && checkConsonant(text[4]);
 }
 
+//If there are less than or equal to four letters in the text key from the first half of the alphabet
 bool username::checkEvenB(string text){
     return true;
 }
 
+//If less than half of the letters from the text key have at least one line of symmetry 
 bool username::checkEvenC(string text){
     return true;
 }
@@ -520,7 +524,7 @@ string username::getTableKey(string date, string text){
     string line2 = "";
     string temp = "";
     string result = "";
-    cout << "test2" << endl;
+    //cout << "test2" << endl;
     if (dateNum % 2 != 0){
         //ODD
         if ((checkOdd1(date) && checkOdd2(date)) || (checkOdd1(date) && checkOdd3(date)) || (checkOdd1(date) && checkOdd3(date))){

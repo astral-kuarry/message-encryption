@@ -14,7 +14,7 @@ using namespace std;
 
 class username {
 public:
-	username();
+	username(string date, string text);	
 	virtual ~username();
 	long long getFrac(long double input, int numDigits);
 	bool checkPrime(int number);

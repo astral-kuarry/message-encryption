@@ -85,9 +85,11 @@ void email(string email, string message, string receivedKey, int type){
 
 //Get text from user and converts it to TextKey
 string getTextKey(string message){ 
+    string encoded = base64_encode(reinterpret_cast<const unsigned char*>(message.c_str()), message.length());
+    //cout << "\n" << encoded << "\n";
     int i, j, k, l, m;
-    char messageArry[message.size()+1];
-    strcpy(messageArry, message.c_str());
+    char messageArry[encoded.size()+1];
+    strcpy(messageArry, encoded.c_str());
     int size = sizeof(messageArry)/sizeof(*messageArry);
     int spaces = 0;
     for(unsigned int iLoop = 0; iLoop < size; iLoop++ )
@@ -204,11 +206,11 @@ long long int getFrac(long double input, int numDigits) {
 }
 
 void test(){
-	//username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
-	/* helpers help;
+	 /* username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
+	helpers help;
 	int mark[5] = {19, 10, 8, 17, 9};
     help.sort(mark, 5);
-    help.printArray(mark, 5);
+    help.printIntArray(mark, 5);
     string s = "THIS IS A TEST";
     int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
     int size = sizeof(test)/sizeof(test[0]);
@@ -220,7 +222,7 @@ void test(){
     cout << getTextKey("Formula.1.2019x09.Austria.Race.SkyF1HD.Smcgill1969")<< "\n";
     cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
     cout << getTextKey("  123werwerwere")<< "\n";
-    cout << getDateKey() << endl;
+   cout << getDateKey() << endl;
     cout << "True Prime: " << part2.checkPrime(997) << endl << "False Prime: " << part2.checkPrime(38) << endl;
     cout << "False Consonant: " << part2.checkConsonant('E') << endl;
     cout << part2.checkAscending("111111567811") << endl;
@@ -256,7 +258,7 @@ void test(){
 
 
     //Test Cases
-    /*
+    /* 
     D: 234237847219 T: RXRCOHCSIJ → 5B → 23423421RXRCHCS
     D: 234237847219 T: BCRCOHCSIJ → 5D → WDWGHDGUI23183831910
     D: 234237847219 T: BFRFOHFSIJ → 5E → 234237847MLVIKRIUIE 
@@ -264,8 +266,8 @@ void test(){
     D: 284237847219 T: UVRVOHVSIJ → 1A → JISVHOVRVUUVRVOHVSIJ284237847219
     D: 286869756844 T: UVRVOHVSIJ → 4A → VRVHVSJ286869756844
     D: 286869756844 T: BCRCOHCSIJ → 4D → BCRCHCSJ286869756844
-    D: 103723971119 T: BCRCOHCSIJ → 2D → CHOCRCB325945193331 
-    */
+    D: 103723971119 T: BCRCOHCSIJ → 2D → CHOCRCB325945193331 */
+    
     username test1 = username("RXRCOHCSIJ", "234237847219");
     username test2 = username("BCRCOHCSIJ", "234237847219");
     username test3 = username("BFRFOHFSIJ", "234237847219");
@@ -274,6 +276,8 @@ void test(){
     username test6 = username("UVRVOHVSIJ", "286869756844");
     username test7 = username("BCRCOHCSIJ", "286869756844");
     username test8 = username("BCRCOHCSIJ", "103723971119");
+
+
 
 	exit(1);
 }

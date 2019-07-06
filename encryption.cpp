@@ -41,7 +41,7 @@ int main() {
 	string textKey;
 	string dateKey;
 	int type;
-	username part2;
+	//username part2;
 	inputs(&email, &message, &receivedKey, &type);
 	textKey = getTextKey(message);
 	dateKey = getDateKey();
@@ -187,7 +187,7 @@ string getDateKey(){
     return finalString;
 }
 
-// 
+// gets frac
 long long int getFrac(long double input, int numDigits) {
     long double result;
     long double intpart;
@@ -197,8 +197,7 @@ long long int getFrac(long double input, int numDigits) {
         while (fractpart < 0.1) {
             fractpart *= 10;
         }
-    }
-        
+    }    
     for (int i = 1; i <= numDigits; i++) {
         fractpart *= 10;
     }
@@ -206,8 +205,8 @@ long long int getFrac(long double input, int numDigits) {
 }
 
 void test(){
-	username part2;
-	helpers help;
+	username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
+	/* helpers help;
 	int mark[5] = {19, 10, 8, 17, 9};
     help.sort(mark, 5);
     help.printArray(mark, 5);
@@ -249,9 +248,12 @@ void test(){
     string letterscheck = part2.invertNumToLet("398472023");
     string check = part2.excise(letters,letterscheck);
     printf("ans: %s\n",check.c_str());
-    string date = "111111111111";
-    cout << "False: " << part2.checkOdd1(date) << endl;
-
+    string even1 = "111111111111";
+    string even2 = "479582694388";
+    cout << "False: " << part2.checkEven1(even1) << endl;
+    cout << "True: " << part2.checkEven2(even2) << endl; 
+    cout << part2.checkEvenB("PEOPLEWHOH") << endl;
+    cout << part2.checkEvenC("EEEEEEEEEE") << endl;*/
     
 	exit(1);
 }

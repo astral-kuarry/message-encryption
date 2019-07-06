@@ -1,4 +1,5 @@
 #include "username.h"
+#include "helpers.h"
 #include <iostream>
 #include <sstream> 
 #include <string>
@@ -573,7 +574,7 @@ bool username::checkEvenC(string text){
     for (int i = 0; i < 15; i++){
         sum = sum + countArry[i];
     }
-    cout << sum << endl;
+    //cout << sum << endl;
     if (sum <= 5){
         return true;
     }
@@ -581,6 +582,7 @@ bool username::checkEvenC(string text){
 }
 
 string username::getTableKey(string date, string text){
+    helpers console;
     string vowels = "AEIOU";
     string oddNums = "13579";
     string evenNums = "02468";
@@ -606,331 +608,393 @@ string username::getTableKey(string date, string text){
     string line2 = "";
     string temp = "";
     string result = "";
-    cout << "test2" << endl;
+   // cout << "test2" << endl;
     if (dateNum % 2 != 0){
         //ODD
+        console.log("ODD");
         if ((checkOdd1(date) && checkOdd2(date)) || (checkOdd1(date) && checkOdd3(date)) || (checkOdd1(date) && checkOdd3(date))){
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //4E
                 line1 = excise(text,vowels) + text;
                 line2 = invertOrder(date);
                 result = line1 + line2;
+                console.log("4E");
             } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //4D
                 line1 = excise(text,vowels);
                 line2 = date;
                 result = line1 + line2;
+                console.log("4D");
             } else if (checkOddA(text)){
                 //4A
                 line1 = excise(text,vowels);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4A");
             } else if (checkOddB(text)){
                 //4B
                 line1 = invertNumToLet(date);
                 line2 = invertLetToNum(text);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4B");
             } else if (checkOddC(text)){
                 //4C
                 line1 = deleteDig(date,-5);
                 line2 = digitLetShift(text,2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4C");
             } else {
                 //4F
                 line1 = excise(date,nums01234);
                 line2 = digitLetShift(text,4);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4F");
             }
         } else if (checkOdd1(date)) {
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //1E
                 line1 = excise(text,letsRSTE);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1E");
             } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //1D
                 line1 = digitNumShift(date,1);
                 line2 = text;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1D");
             } else if (checkOddA(text)){
                 //1A
                 line1 = invertOrder(text) + text;
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1A");
             } else if (checkOddB(text)){
                 //1B
                 line1 = text;
                 line2 = excise(date,nums1345);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1B");
             } else if (checkOddC(text)){
                 //1C
                 line1 = invertOrder(date);
                 line2 = deleteDig(digitLetShift(text,4),-2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1C");
             } else {
                 //1F
                 line1 = deleteDig(date,4);
                 line2 = invertOrder(text);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1F");
             }
         } else if (checkOdd2(date)){
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //2E
                 line1 = invertNumToLet(date) + date;
                 line2 = text;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2E");
             } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //2D
                 line1 = deleteDig(invertOrder(text),-3);
                 line2 = digitNumShift(date,2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2D");
             } else if (checkOddA(text)){
                 //2A
                 line1 = digitNumShift(date,3);
                 line2 = digitLetShift(text,-2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2A");
             } else if (checkOddB(text)){
                 //2B
                 line1 = invertOrder(text);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2B");
             } else if (checkOddC(text)){
                 //2C
                 line1 = excise(date,oddNums);
                 line2 = digitLetShift(text,1);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2C");
             } else {
                 //2F
                 line1 = date + invertOrder(text);
                 line2 = invertLetToNum(text);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2F");
             }
         } else if (checkOdd3(date)){
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //3E
                 line1 = date;
                 line2 = text;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3E");
             } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //3D
                 line1 = text;
                 line2 = excise(date,primeNums);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3D");
             } else if (checkOddA(text)){
                 //3A
                 line1 = deleteDig(text,-3);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3A");
             } else if (checkOddB(text)){
                 //3B
                 line1 = text;
                 line2 = invertOrder(date) + excise(date,evenNums);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3B");
             } else if (checkOddC(text)){
                 //3C
                 line1 = digitLetShift(text,4);
                 line2 = date + text;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3C");
             } else {
                 //3F
                 line1 = text;
                 line2 = date + date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3F");
             }
         } else {
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //5E
                 line1 = deleteDig(date,-3);
                 line2 = invertOrder(digitLetShift(text,3));
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5E");
             } else if ((checkOddA(text) && checkOddB(text)) || (checkOddB(text) && checkOddC(text)) || (checkOddA(text) && checkOddC(text))) {
                 //5D
                 line1 = invertNumToLet(date);
                 line2 = invertLetToNum(excise(text,vowels));
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5D");
             } else if (checkOddA(text)){
                 //5A
                 line1 = invertLetToNum(text + invertNumToLet(date));
                 line2 = text;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5A");
             } else if (checkOddB(text)){
                 //5B
                 line1 = excise(date,nums7890);
                 line2 = excise(text,letsAEIJLOU);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5B");
             } else if (checkOddC(text)){
                 //5C
                 line1 = deleteDig(date,-3);
                 line2 = digitLetShift(text,-3);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5C");
             } else {
                 //5F
                 line1 = excise(text,invertNumToLet(date));
                 line2 = digitNumShift(date,-4);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5F");
             }
         }
     } else {
         //EVEN
+        console.log("EVEN");
         if ((checkEven1(date) && checkEven2(date)) || (checkEven2(date) && checkEven3(date)) || (checkEven1(date) && checkEven3(date))){
             if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //4E
                 line1 = excise(text,invertNumToLet(date));
                 line2 = digitNumShift(date,-4);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4E");
             } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //4D
                 line1 = excise(date,nums0128);
                 line2 = digitLetShift(text,4);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4D");
             } else if (checkEvenA(text)){
                 //4A
                 line1 = excise(text,vowels) + text;
                 line2 = invertOrder(date);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4A");
             } else if (checkEvenB(text)){
                 //4B
                 line1 = deleteDig(text,3);
                 line2 = invertOrder(date);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4B");
             } else if (checkEvenC(text)){
                 //4C
                 line1 = deleteDig(date,3);
                 line2 = invertOrder(digitLetShift(text,3));
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4C");
             } else {
                 //4F
                 line1 = deleteDig(date,-1);
                 line2 = invertOrder(deleteDig(text,-1));
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("4F");
             }
         } else if (checkEven1(date)){
             if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //1E
                 line1 = text;
                 line2 = excise(date,nums014689);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1E");
             } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //1D
                 line1 = excise(text,letsMNOP);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1D");
             } else if (checkEvenA(text)){
                 //1A
                 line1 = invertOrder(text);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1A");
             } else if (checkEvenB(text)){
                 //1B
                 line1 = digitNumShift(date,-3);
                 line2 = digitLetShift(text,-3);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1B");
             } else if (checkEvenC(text)){
                 //1C
                 line1 = invertOrder(date);
                 line2 = invertOrder(text);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1C");
             } else {
                 //1F
                 line1 = excise(text,letA);
                 line2 = excise(date,evenNums);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("1F");
             }
         } else if (checkEven2(date)){
             if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //2E
                 line1 = digitNumShift(date,1);
                 line2 = digitLetShift(text,-2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2E");
             } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //2D
                 line1 = invertOrder(text) + text;
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2D");
             } else if (checkEvenA(text)){
                 //2A
                 line1 = deleteDig(invertOrder(text),-3);
                 line2 = digitNumShift(date,2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2A");
             } else if (checkEvenB(text)){
                 //2B
                 line1 = excise(date,evenNums);
                 line2 = digitLetShift(text,3);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2B");
             } else if (checkEvenC(text)){
                 //2C
                 line1 = text;
                 line2 = excise(date,primeNums);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2C");
             } else {
                 //2F
                 line1 = date;
                 line2 = text;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("2F");
             }
         } else if (checkEven3(date)){
             if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //3E
                 line1 = deleteDig(date,3);
                 line2 = digitLetShift(text,-1);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3E");
             } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //3D
                 line1 = excise(date,nums01694);
                 line2 = digitLetShift(text,4);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3D");
             } else if (checkEvenA(text)){
                 //3A
                 line1 = excise(text,vowels);
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3A");
             } else if (checkEvenB(text)){
                 //3B
                 line1 = text;
                 line2 = excise(date,primeNums);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3B");
             } else if (checkEvenC(text)){
                 //3C
                 line1 = text;
                 line2 = invertOrder(date) + excise(date,oddNums);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3C");
             } else {
                 //3F
                 line1 = excise(date,nums149);
                 line2 = digitLetShift(text,-2);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("3F");
             }
         } else {
             if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //5E
                 line1 = invertOrder(invertLetToNum(text));
                 line2 = invertNumToLet(invertOrder(date));
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5E");
             } else if ((checkEvenA(text) && checkEvenB(text)) || (checkEvenB(text) && checkEvenC(text)) || (checkEvenA(text) && checkEvenC(text))) {
                 //5D
                 line1 = deleteDig(date,2);
                 line2 = digitLetShift(text,6);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5D");
             } else if (checkEvenA(text)){
                 //5A
                 line1 = excise(date,nums01234);
                 line2 = digitLetShift(text,4);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5A");
             } else if (checkEvenB(text)){
                 //5B
                 line1 = invertOrder(text) + text;
                 line2 = date + invertOrder(date);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5B");
             } else if (checkEvenC(text)){
                 //5C
                 line1 = invertOrder(text) + text;
                 line2 = date;
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5C");
             } else {
                 //5F
                 line1 = digitLetShift(text,4);
                 line2 = invertNumToLet(date) + invertOrder(text);
-                result = line1 + line2;
+                result = line1 + line2; 
+                console.log("5F");
             }
         }
     }

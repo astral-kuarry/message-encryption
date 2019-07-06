@@ -12,7 +12,10 @@ public:
 	virtual ~helpers();
     void swap(int *xp, int *yp);
     void sort(int arr[], int n);
-    void printArray(int arr[], int size);
+    void printIntArray(int arr[], int size);
+    void printCharArray(char arr[], int size);
+    void log(string input);
+    void log(int input);
 private:
 
 };

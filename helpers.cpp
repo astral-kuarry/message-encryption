@@ -10,6 +10,8 @@
 #include <sstream>
 #include <iomanip>
 
+bool verbose = true;
+
 helpers::helpers() {
 	//constructor
 
@@ -24,6 +26,7 @@ void helpers::swap(int *xp, int *yp) {
     *xp = *yp; 
     *yp = temp; 
 } 
+
 // A function to implement bubble sort 
 void helpers::sort(int arr[], int n) { 
    int i, j; 
@@ -32,9 +35,29 @@ void helpers::sort(int arr[], int n) {
            if (arr[j] > arr[j+1]) 
               swap(&arr[j], &arr[j+1]); 
 } 
-void helpers::printArray(int arr[], int size) { 
+
+void helpers::printIntArray(int arr[], int size) { 
     int i; 
     for (i=0; i < size; i++) 
         printf("%d ", arr[i]); 
     printf("\n"); 
 } 
+
+void helpers::printCharArray(char arr[], int size) { 
+    int i; 
+    for (i=0; i < size; i++) 
+        printf("%c ", arr[i]); 
+    printf("\n"); 
+} 
+
+void helpers::log(string input){
+    if (verbose == true){
+        cout << input << endl;
+    }
+}
+
+void helpers::log(int input){
+    if (verbose == true){
+        cout << input << endl;
+    }
+}

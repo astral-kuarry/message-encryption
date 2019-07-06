@@ -293,7 +293,6 @@ string username::invertNumToLet(string input){
                     break;
             }
             i += 2;
-
         } else {
             //printf("check0\n");
             switch(inputArry[i]) {
@@ -349,46 +348,22 @@ string username::excise(string input, string excise){
     strcpy(exArry, excise.c_str());
     int size = sizeof(inputArry)/sizeof(inputArry[0]) - 1;
     int sizeEx = sizeof(exArry)/sizeof(exArry[0]) - 1;
-    //printf("sizeEx: %d\n",sizeEx);
     int j = 0;
     int k = 0;
     char newArry [30] = {'0'};
     int check = 0;
-
     for (int i = 0; i < size; i++) {
-       // printf("checkI: %d\n",i);
         for (int j = 0; j < sizeEx; j++){
-          //  printf("J:%d\n",j);
-            if (inputArry[i] == exArry[j]) {
-              //  printf("inputArry[%d]:%c exArry[%d]:%c\n",i,inputArry[i],j,exArry[j]);
-                //newArry[k] = inputArry[i];
-                //printf("newArry[%d]:%c\n",k,newArry[k]);
-                //k++;
-                check = 1;
-
-            }
-        }
-        /*
-        while ((j < sizeEx) || (check == 0)) {
-            printf("inputArry[%d]:%c exArry[%d]:%c\n",i,inputArry[i],j,exArry[j]);
             if (inputArry[i] == exArry[j]) {
                 check = 1;
-                printf("I hate C\n");
             }
-            j++;
-        }
-        */
-        
+        }  
         if (check == 0) {
             newArry[k] = inputArry[i];
             k++;
         }
-        check = 0;
-        //j = 0;
-        
-        
+        check = 0;             
     }
-    
     string str(newArry);
     return str;
 }
@@ -581,7 +556,7 @@ bool username::checkEvenC(string text){
     return false;
 }
 
-string username::getTableKey(string date, string text){
+string username::getTableKey(string text, string date){
     helpers console;
     string vowels = "AEIOU";
     string oddNums = "13579";
@@ -602,7 +577,7 @@ string username::getTableKey(string date, string text){
     string letA = "A";
     //int dateNum = stoi(date);
     stringstream geek(date); 
-    int dateNum = 0; 
+    long long dateNum = 0; 
     geek >> dateNum; 
     string line1 = "";
     string line2 = "";

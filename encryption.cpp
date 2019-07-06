@@ -41,11 +41,10 @@ int main() {
 	string textKey;
 	string dateKey;
 	int type;
-	//username part2;
 	inputs(&email, &message, &receivedKey, &type);
 	textKey = getTextKey(message);
 	dateKey = getDateKey();
-    
+    username part2 = username(textKey, dateKey);
 
 	return 0;
 }
@@ -205,7 +204,7 @@ long long int getFrac(long double input, int numDigits) {
 }
 
 void test(){
-	username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
+	//username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
 	/* helpers help;
 	int mark[5] = {19, 10, 8, 17, 9};
     help.sort(mark, 5);
@@ -254,6 +253,27 @@ void test(){
     cout << "True: " << part2.checkEven2(even2) << endl; 
     cout << part2.checkEvenB("PEOPLEWHOH") << endl;
     cout << part2.checkEvenC("EEEEEEEEEE") << endl;*/
-    
+
+
+    //Test Cases
+    /*
+    D: 234237847219 T: RXRCOHCSIJ → 5B → 23423421RXRCHCS
+    D: 234237847219 T: BCRCOHCSIJ → 5D → WDWGHDGUI23183831910
+    D: 234237847219 T: BFRFOHFSIJ → 5E → 234237847MLVIKRIUIE 
+    D: 234237847219 T: UVRVOHVSIJ → 5A → 212218221582219910234237847219UVRVOHVSIJ
+    D: 284237847219 T: UVRVOHVSIJ → 1A → JISVHOVRVUUVRVOHVSIJ284237847219
+    D: 286869756844 T: UVRVOHVSIJ → 4A → VRVHVSJ286869756844
+    D: 286869756844 T: BCRCOHCSIJ → 4D → BCRCHCSJ286869756844
+    D: 103723971119 T: BCRCOHCSIJ → 2D → CHOCRCB325945193331 
+    */
+    username test1 = username("RXRCOHCSIJ", "234237847219");
+    username test2 = username("BCRCOHCSIJ", "234237847219");
+    username test3 = username("BFRFOHFSIJ", "234237847219");
+    username test4 = username("UVRVOHVSIJ", "234237847219");
+    username test5 = username("UVRVOHVSIJ", "284237847219");
+    username test6 = username("UVRVOHVSIJ", "286869756844");
+    username test7 = username("BCRCOHCSIJ", "286869756844");
+    username test8 = username("BCRCOHCSIJ", "103723971119");
+
 	exit(1);
 }

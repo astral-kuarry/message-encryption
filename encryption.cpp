@@ -2,7 +2,7 @@
 // Name        : message-encryption
 // Author      : Dante Sanaei and Alec Leven
 // Version     : pre-release
-// Description : An algorithm to generate an encrypted username and password for a messaging service
+// Description : An encryption algorithm that generates a private messaging medium service for two or more users
 //============================================================================
 
 #include <iostream>

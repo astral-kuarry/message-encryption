@@ -14,16 +14,39 @@
 #include <string.h>
 
 using namespace std;
-username::username(string date, string text) {
-	cout << getTableKey(date, text) << endl;
+helpers console; 
 
+username::username(string text, string date) {
+	string tableKey = invertNumToLet(getTableKey(text, date));
+    //cout << tableKey << endl;
+    char tableKeyArry[tableKey.size()+1];
+    strcpy(tableKeyArry, tableKey.c_str());
+    int midPoint = tableKey.size()/2;
+    char keywordArry[100];
+    char plaintextArry[100];
+    int index = 0;
+    for (int i = 0; i < midPoint; i++){
+        keywordArry[i] = tableKeyArry[i];
+    }
+    keywordArry[midPoint] = '\0';
+    for (int j = midPoint; j < tableKey.size(); j++){
+        plaintextArry[index] = tableKeyArry[j];
+        index++;
+    }
+    plaintextArry[tableKey.size()-midPoint] = '\0';
+
+    string keyword(keywordArry);
+    string plaintext(plaintextArry);
+    cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl;
+    
 }
 
 username::~username() {
 	// TODO Auto-generated destructor stub
 }
 
-bool username::checkPrime(int number){
+bool username::checkPrime(long long number){
+    console.log("Check Prime");
     int flag = 1;
     for (int i = 2; i <= sqrt(number) / 2; i++) {  
         if (number % i == 0) { 
@@ -39,8 +62,10 @@ bool username::checkPrime(int number){
 
 // Check if a letter is a consonant
 bool username::checkConsonant(char letter){
+    console.log("Check Consonant");
     char vowels[5] = {'a', 'e', 'i', 'o', 'u'};
     int i;
+    //cout << letter << endl;
     for (i = 0; i < 5; i++){
         if (letter == vowels[i] || letter == toupper(vowels[i])){
             return false;
@@ -51,6 +76,7 @@ bool username::checkConsonant(char letter){
 
 // Check if there is a series of four ascending numbers in the date key
 bool username::checkAscending(string numString){
+    console.log("Check Ascending");
     char numStringArry[120];
     int numIntArry[120];
     int i,j;
@@ -69,6 +95,7 @@ bool username::checkAscending(string numString){
 // count how many of certain characters exist in a string
 // type is what type of count you want. 1 = 1 digit int, 2 = 3 digit int
 void username::countInt(string input, int inputSize, int checkArry[], int checkArrysize, int countArry[], int type){
+    console.log("Count Int");
     int i,j,k,m;
     int count;
     int intInputArry[100];
@@ -105,6 +132,7 @@ void username::countInt(string input, int inputSize, int checkArry[], int checkA
 }
 
 void username::countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]){
+    console.log("Count Char");
     int i,j,k,m;
     int count;
     char charInputArry[inputSize+1];
@@ -121,14 +149,17 @@ void username::countChar(string input, int inputSize, char checkArry[], int chec
 }
 
 string username::invertLetToNum(string input) {
+    console.log("Invert Let to Num");
     char inputArry[input.size()+1];
     strcpy(inputArry, input.c_str());
     int numArry [input.size()];
 
     for (int i = 0; i < sizeof(inputArry)-1; i++) {
-        numArry[i] = (int) inputArry[i] - 64;
+        numArry[i] = abs((int) inputArry[i] - 64);
+        //cout << abs(numArry[i]) << endl;
     }
     int size = sizeof(numArry)/sizeof(numArry[0]);
+
     string str = intToString(numArry,size);
 
     return str;
@@ -136,6 +167,7 @@ string username::invertLetToNum(string input) {
 
 
 string username::invertOrder(string input) {
+    console.log("Invert Order");
     char inputArry[input.size()+1];
     strcpy(inputArry, input.c_str());
     char dupArry [input.size()+1];
@@ -144,11 +176,13 @@ string username::invertOrder(string input) {
         dupArry[i] = inputArry[input.size()-1-i];
     }
     string str(dupArry);
+    console.log(str);
     return str;
 }
 
 
 string username::digitLetShift(string input, int numDigits){
+    console.log("digit let shift");
     char inputArry[input.size()+1];
     strcpy(inputArry, input.c_str());
 
@@ -159,8 +193,8 @@ string username::digitLetShift(string input, int numDigits){
     return str;
 }
 
-
 string username::digitNumShift(string input, int numDigits){
+    console.log("digit num shift");
     char inputArry[input.size()+1];
     strcpy(inputArry, input.c_str());
 
@@ -173,34 +207,41 @@ string username::digitNumShift(string input, int numDigits){
 
 
 string username::intToString (int arry[], int size){
+    console.log("int to string");
     string outputString = "";
     for (int i = 0; i < size; i++){
-        std::string str = std::to_string(arry[i]);
+        string str = to_string(arry[i]);
         outputString = outputString + str;
-        }
+        //cout << outputString << endl;
+    }
+    //cout << outputString << endl;
     return outputString;
 }
 
 string username::deleteDig (string input, int numDigits){
-    char inputArry[input.size()+1];
-    strcpy(inputArry, input.c_str());
-    char newArry[] = {0};
-    int size = sizeof(inputArry)/sizeof(inputArry[0]) - abs(numDigits) - 1;
+        console.log("Delete Dig");
+        char inputArry[input.size()+1];
+        strcpy(inputArry, input.c_str());
+        char newArry[] = {0};
+        int size = sizeof(inputArry)/sizeof(inputArry[0]) - abs(numDigits) - 1;
 
-    if (numDigits > 0) {
-        for (int i = 0; i < size; i++) {
-            newArry[i] = inputArry[i];
+        if (numDigits > 0) {
+            for (int i = 0; i < size; i++) {
+                newArry[i] = inputArry[i];
+            }
+        } else {
+            for (int j = 0; j < size; j++) {
+                newArry[j] = inputArry[j+abs(numDigits)];
+            }
         }
-    } else {
-        for (int j = 0; j < size; j++) {
-            newArry[j] = inputArry[j+abs(numDigits)];
-        }
-    }
-    string str(newArry);
-    return str;
+        newArry[size] = '\0';
+        string str(newArry);
+        console.log(str);
+        return str;
 }
 
 string username::invertNumToLet(string input){
+    console.log("invert num to let");
     //printf("Input: %s\n",input.c_str());
     char inputArry[100];
     strcpy(inputArry, input.c_str());
@@ -338,10 +379,12 @@ string username::invertNumToLet(string input){
     }
     //printf("checkkkk: %c\n",newArry[0]);
     string str(newArry);
+    //cout << str << endl;
     return str;
 }
 
 string username::excise(string input, string excise){
+    console.log("excise");
     char inputArry[input.size()+1];
     strcpy(inputArry, input.c_str());
     char exArry[excise.size()+1];
@@ -388,6 +431,7 @@ int username::intToNum(int arry[], int size){
 
 //Checks if a 3 digit number in the date key is prime
 bool username::checkOdd1(string date){
+    console.log("checkOdd1");
     int sumOdd = 0;
     int sumEven = 0;
     int countArryEven[100];
@@ -410,14 +454,16 @@ bool username::checkOdd1(string date){
 }
 
 bool username::checkOdd2(string date){
+    console.log("checkOdd2");
     stringstream changeThis(date); 
-    int dateNum = 0; 
+    long long dateNum = 0; 
     changeThis >> dateNum;
 
     return checkPrime(dateNum);
 }
 
 bool username::checkOdd3(string date){
+    console.log("checkOdd3");
     char dateArr[date.size()+1];
     strcpy(dateArr, date.c_str());
     int sum = 0;
@@ -425,7 +471,7 @@ bool username::checkOdd3(string date){
     for (int i = 0; i < 12; i++){
         sum += (dateArr[i] - 48);
     }
-    printf("sum: %f\n",sum/12.0);
+    //printf("sum: %f\n",sum/12.0);
     if (((double) (sum/12.0)) > 5.5){
         return true;
     } else {
@@ -434,6 +480,7 @@ bool username::checkOdd3(string date){
 }
 
 bool username::checkOddA(string text){
+    console.log("checkOddA");
     char checkArr[6]= {'B','F','J','S','V'};
     int countArrChar[100];
     countChar(text, 12, checkArr, 5, countArrChar);
@@ -446,6 +493,7 @@ bool username::checkOddA(string text){
 }
 
 bool username::checkOddB(string text){
+    console.log("checkOddB");
     char checkArr[6]= {'A','E','I','O','U'};
     int countArrChar[100];
     countChar(text, 12, checkArr, 5, countArrChar); 
@@ -461,6 +509,7 @@ bool username::checkOddB(string text){
 }
 
 bool username::checkOddC(string text){
+    console.log("checkOddC");
     char textArr[text.size()+1];
     strcpy(textArr, text.c_str());
     int sum = (textArr[0]-64) + (textArr[1]-64);
@@ -473,6 +522,7 @@ bool username::checkOddC(string text){
 
 //If any three successive numbers of the date key form a 3-digit prime
 bool username::checkEven1(string date){
+    console.log("checkEven1");
     int dateIntArry[100];
     int threeDigArry[10];
     int threeDigInt;
@@ -494,6 +544,7 @@ bool username::checkEven1(string date){
 
 //If at least one date key digit is repeated at least three times
 bool username::checkEven2(string date){
+    console.log("checkEven2");
     int dateIntArry[100];
     int i,j,k;
     int count;
@@ -516,16 +567,20 @@ bool username::checkEven2(string date){
 
 //If at least three successive numbers in the date key are ordered ascendingly
 bool username::checkEven3(string date){
+    console.log("checkEven3");
     return checkAscending(date);
 }
 
 //If the third, fourth, and fifth letters are consonants
 bool username::checkEvenA(string text){
+    console.log("checkEvenA");
+    //cout << text << endl;
     return checkConsonant(text[2]) && checkConsonant(text[3]) && checkConsonant(text[4]);
 }
 
 //If there are less than or equal to four letters in the text key from the first half of the alphabet
 bool username::checkEvenB(string text){
+    console.log("checkEvenB");
     char firstHalf[100] = {'A', 'B', 'C', 'D', 'E', 'F', 'G' ,'H', 'I', 'J', 'K', 'L', 'M'};
     int countArry[100];
     int sum = 0;
@@ -542,6 +597,7 @@ bool username::checkEvenB(string text){
 
 //If less than half of the letters from the text key have at least one line of symmetry 
 bool username::checkEvenC(string text){
+    console.log("checkEvenC");
     char symmetry[100] = {'A','B','C','D','E','H','I','M','O','T','U','V','W','X','Y'};
     int countArry[100];
     int sum = 0;
@@ -557,7 +613,6 @@ bool username::checkEvenC(string text){
 }
 
 string username::getTableKey(string text, string date){
-    helpers console;
     string vowels = "AEIOU";
     string oddNums = "13579";
     string evenNums = "02468";
@@ -587,6 +642,7 @@ string username::getTableKey(string text, string date){
     if (dateNum % 2 != 0){
         //ODD
         console.log("ODD");
+        
         if ((checkOdd1(date) && checkOdd2(date)) || (checkOdd1(date) && checkOdd3(date)) || (checkOdd1(date) && checkOdd3(date))){
             if (checkOddA(text) && checkOddB(text) && checkOddC(text)){
                 //4E
@@ -781,6 +837,7 @@ string username::getTableKey(string text, string date){
     } else {
         //EVEN
         console.log("EVEN");
+        //cout << checkEvenB(text) << checkEvenC(text) << endl;
         if ((checkEven1(date) && checkEven2(date)) || (checkEven2(date) && checkEven3(date)) || (checkEven1(date) && checkEven3(date))){
             if (checkEvenA(text) && checkEvenB(text) && checkEvenC(text)){
                 //4E

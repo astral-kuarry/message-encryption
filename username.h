@@ -17,7 +17,7 @@ public:
 	username(string date, string text);	
 	virtual ~username();
 	long long getFrac(long double input, int numDigits);
-	bool checkPrime(int number);
+	bool checkPrime(long long number);
 	bool checkConsonant(char letter);
 	bool checkAscending(string numString);
 	void countInt(string input, int inputSize, int checkArry[], int checkArrysize, int countArry[], int type);

@@ -10,7 +10,7 @@
 #include <sstream>
 #include <iomanip>
 
-bool verbose = true;
+bool verbose = false;
 
 helpers::helpers() {
 	//constructor

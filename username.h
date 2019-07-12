@@ -6,6 +6,8 @@
  */
 #include <string>
 #include <cstring>
+#include <vector>
+
 using namespace std;
 
 #ifndef USERNAME_H_
@@ -43,6 +45,29 @@ public:
 	bool checkEvenB(string text);
 	bool checkEvenC(string text);
 	int intToNum(int arry[], int size);
+	int Mod(int a, int b);
+    char** Create2DArray(int rowCount, int colCount);
+    string ToUpper(string str);
+    string RemoveChar(string str, char ch);
+    vector<int> FindAllOccurrences(string str, char value);
+    string RemoveAllDuplicates(string str, vector<int> indexes);
+    string Decipher(string input, string key);
+    string Encipher(string input, string key);
+    string Cipher(string input, string key, bool encipher);
+    string AdjustOutput(string input, string output);
+    string RemoveOtherChars(string input);
+    char* DifferentRowColumn(char** keySquare, int row1, int col1, int row2, int col2);
+    char* SameRowColumn(char** keySquare, int row, int col, int encipher);
+    char* SameColumn(char** keySquare, int col, int row1, int row2, int encipher);
+    char* SameRow(char** keySquare, int row, int col1, int col2, int encipher);
+    void GetPosition(char** keySquare, char ch, int* row, int* col);
+    char** GenerateKeySquare(string key);
+    string keyword;
+    string plaintext;
+    string ciphertext;
+
+
+
 private:
 
 };

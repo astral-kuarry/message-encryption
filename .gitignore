@@ -36,3 +36,5 @@
 .DS_Store
 /cmake-build-debug-mingw/
 /.idea/
+CMakeLists.txt
+*.project

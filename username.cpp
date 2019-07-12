@@ -1,6 +1,7 @@
 #include "username.h"
 #include "helpers.h"
 #include <iostream>
+#include<stdlib.h>
 #include <sstream> 
 #include <string>
 #include <array>
@@ -12,6 +13,10 @@
 #include <sstream>
 #include <iomanip>
 #include <string.h>
+#include <vector>
+#include <ctype.h>
+
+
 
 using namespace std;
 helpers console; 
@@ -33,11 +38,13 @@ username::username(string text, string date) {
         plaintextArry[index] = tableKeyArry[j];
         index++;
     }
-    plaintextArry[tableKey.size()-midPoint] = '\0';
-
-    string keyword(keywordArry);
-    string plaintext(plaintextArry);
-    cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl;
+    plaintextArry[tableKey.size() - midPoint] = '\0';
+    string str(keywordArry);
+    string str1(plaintextArry);
+    username::keyword = str;
+    username::plaintext = str1;
+    username::ciphertext = Encipher(keyword, plaintext);
+    cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl << "ciphertext: " << ciphertext << endl;
     
 }
 
@@ -242,144 +249,141 @@ string username::deleteDig (string input, int numDigits){
 
 string username::invertNumToLet(string input){
     console.log("invert num to let");
-    //printf("Input: %s\n",input.c_str());
-    char inputArry[100];
+    int i,j,k;
+    j = 0;
+    char inputArry[input.size()];
+    int num;
+    int inputDig;
+    int inputDigPlusOne;
     strcpy(inputArry, input.c_str());
-    char newArry[] = {0};
-    int size = sizeof(inputArry)/sizeof(inputArry[0]) - 1;
-    int i = 0;
-    int j = 0;
-    //printf("size: %d\n",size);
-
-    while (i < size) {
-       // printf("%d value: %c\n",i,inputArry[i]);
-        if (inputArry[i] == 0) {
-            i++;
-        } else if ((inputArry[i] == '1') && (i != size - 1)){
-            //printf("check1\n");
-            switch(inputArry[i+1]) {
-                case '0' :
-                    newArry[j] = 'J';
-                    j++;
-                    //printf("check1111:%c at j value: %d\n",newArry[j],j);
-                    break;
-                case '1' :
-                    newArry[j] = 'K';
-                    j++;
-                    break;
-                case '2' :
-                    newArry[j] = 'L';
-                    j++;
-                    break;
-                case '3' :
-                    newArry[j] = 'M';
-                    j++;
-                    break;
-                case '4' :
-                    newArry[j] = 'N';
-                    j++;
-                    break;
-                case '5' :
-                    newArry[j] = 'O';
-                    j++;
-                    break;
-                case '6' :
-                    newArry[j] = 'P';
-                    j++;
-                    break;
-                case '7' :
-                    newArry[j] = 'Q';
-                    j++;
-                    break;
-                case '8' :
-                    newArry[j] = 'R';
-                    j++;
-                    break;
-                case '9' :
-                    newArry[j] = 'S';
-                    j++;
-                    break;
+    int size = sizeof(inputArry)/sizeof(inputArry[0]);
+    char outputArry[100];
+    for (i = 0; i < size; i++){
+        if (!isdigit(inputArry[i])) {
+            outputArry[j] = inputArry[i];
+            j++;
+        } else{
+            inputDig = inputArry[i] - '0';
+            inputDigPlusOne = inputArry[i+1] - '0';
+            num = inputDig * 10 + inputDigPlusOne;
+            //cout << num << " " << inputDig << " " << inputDigPlusOne << endl;
+            //cout << size << endl;
+            if (inputDig != 0){
+                if (num > 26 || i == size-1){
+                    if (inputDig == 1){
+                        outputArry[j] = 'A';
+                        j++;
+                    }
+                    if (inputDig == 2){
+                        outputArry[j] = 'B';
+                        j++;
+                    }
+                    if (inputDig == 3){
+                        outputArry[j] = 'C';
+                        j++;
+                    }
+                    if (inputDig == 4){
+                        outputArry[j] = 'D';
+                        j++;
+                    }
+                    if (inputDig == 5){
+                        outputArry[j] = 'E';
+                        j++;
+                    }
+                    if (inputDig == 6){
+                        outputArry[j] = 'F';
+                        j++;
+                    }
+                    if (inputDig == 7){
+                        outputArry[j] = 'G';
+                        j++;
+                    }
+                    if (inputDig == 8){
+                        outputArry[j] = 'H';
+                        j++;
+                    }
+                    if (inputDig == 9) {
+                        outputArry[j] = 'I';
+                        j++;
+                    }
+                } else{
+                    if (num == 10){
+                        outputArry[j] = 'J';
+                        j++;
+                    }
+                    if (num == 11){
+                        outputArry[j] = 'K';
+                        j++;
+                    }
+                    if (num == 12){
+                        outputArry[j] = 'L';
+                        j++;
+                    }
+                    if (num == 13){
+                        outputArry[j] = 'M';
+                        j++;
+                    }
+                    if (num == 14){
+                        outputArry[j] = 'N';
+                        j++;
+                    }
+                    if (num == 15){
+                        outputArry[j] = 'O';
+                        j++;
+                    }
+                    if (num== 16){
+                        outputArry[j] = 'P';
+                        j++;
+                    }
+                    if (num == 17){
+                        outputArry[j] = 'Q';
+                        j++;
+                    }
+                    if (num == 18) {
+                        outputArry[j] = 'R';
+                        j++;
+                    }
+                    if (num == 19) {
+                        outputArry[j] = 'S';
+                        j++;
+                    }
+                    if (num == 20) {
+                        outputArry[j] = 'T';
+                        j++;
+                    }
+                    if (num == 21) {
+                        outputArry[j] = 'U';
+                        j++;
+                    }
+                    if (num == 22) {
+                        outputArry[j] = 'V';
+                        j++;
+                    }
+                    if (num == 23) {
+                        outputArry[j] = 'W';
+                        j++;
+                    }
+                    if (num == 24) {
+                        outputArry[j] = 'X';
+                        j++;
+                    }
+                    if (num == 25) {
+                        outputArry[j] = 'Y';
+                        j++;
+                    }
+                    if (num == 26) {
+                        outputArry[j] = 'Z';
+                        j++;
+                    }
+                    i++;
+                }
             }
-            i += 2;
-        } else if ((inputArry[i] == '2') && (inputArry[i+1] != '\0') && (inputArry[i+1] != '7' || inputArry[i+1] != '8' || inputArry[i+1] != '9')){
-            //printf("check2\n");
-            switch(inputArry[i+1]) {
-                case '0' :
-                    newArry[j] = 'T';
-                    j++;
-                    break;
-                case '1' :
-                    newArry[j] = 'U';
-                    j++;
-                    break;
-                case '2' :
-                    newArry[j] = 'V';
-                    j++;
-                    break;
-                case '3' :
-                    newArry[j] = 'W';
-                    j++;
-                    break;
-                case '4' :
-                    newArry[j] = 'X';
-                    j++;
-                    break;
-                case '5' :
-                    newArry[j] = 'Y';
-                    j++;
-                    break;
-                case '6' :
-                    newArry[j] = 'Z';
-                    j++;
-                    break;
-            }
-            i += 2;
-        } else {
-            //printf("check0\n");
-            switch(inputArry[i]) {
-                case '1' :
-                    newArry[j] = 'A';
-                    j++;
-                    break;
-                case '2' :
-                    newArry[j] = 'B';
-                    j++;
-                    break;
-                case '3' :
-                    newArry[j] = 'C';
-                    j++;
-                    break;
-                case '4' :
-                    newArry[j] = 'D';
-                    j++;
-                    break;
-                case '5' :
-                    newArry[j] = 'E';
-                    j++;
-                    break;
-                case '6' :
-                    newArry[j] = 'F';
-                    j++;
-                    break;
-                case '7' :
-                    newArry[j] = 'G';
-                    j++;
-                    break;
-                case '8' :
-                    newArry[j] = 'H';
-                    j++;
-                    break;
-                case '9' :
-                    newArry[j] = 'I';
-                    j++;
-                    break;
-            }
-            i++;
         }
     }
-    //printf("checkkkk: %c\n",newArry[0]);
-    string str(newArry);
-    //cout << str << endl;
+
+    outputArry[j] = '\0';
+    //cout << i << " " << j << endl;
+    string str(outputArry);
     return str;
 }
 
@@ -1033,4 +1037,200 @@ string username::getTableKey(string text, string date){
 
     return result;
 
+}
+
+int username::Mod(int a, int b)
+{
+    return (a % b + b) % b;
+}
+
+char** username::Create2DArray(int rowCount, int colCount) {
+    char** arr = new char*[rowCount];
+
+    for (int i = 0; i < rowCount; ++i)
+        arr[i] = new char[colCount];
+
+    return arr;
+}
+
+string username::ToUpper(string str) {
+    string output = str;
+    int strLen = str.size();
+
+    for (int i = 0; i < strLen; ++i)
+        output[i] = toupper(output[i]);
+
+    return output;
+}
+
+ string username::RemoveChar(string str, char ch) {
+    string output = str;
+
+    for (int i = 0; i < output.size(); ++i)
+        if (output[i] == ch)
+            output = output.erase(i, 1);
+
+    return output;
+}
+
+ vector<int> username::FindAllOccurrences(string str, char value)
+{
+    vector<int> indexes;
+
+    int index = 0;
+    while ((index = str.find(value, index)) != -1)
+        indexes.push_back(index++);
+
+    return indexes;
+}
+
+ string username::RemoveAllDuplicates(string str, vector<int> indexes)
+{
+    string retVal = str;
+
+    for (int i = indexes.size() - 1; i >= 1; i--)
+        retVal = retVal.erase(indexes[i], 1);
+
+    return retVal;
+}
+
+ char** username::GenerateKeySquare(string key)
+{
+    char** keySquare = Create2DArray(5, 5);
+    string defaultKeySquare = "ABCDEFGHIKLMNOPQRSTUVWXYZ";
+    string tempKey = key.empty() ? "CIPHER" : ToUpper(key);
+
+    tempKey = RemoveChar(tempKey, 'J');
+    tempKey += defaultKeySquare;
+
+    for (int i = 0; i < 25; ++i)
+    {
+        vector<int> indexes = FindAllOccurrences(tempKey, defaultKeySquare[i]);
+        tempKey = RemoveAllDuplicates(tempKey, indexes);
+    }
+
+    tempKey = tempKey.substr(0, 25);
+
+    for (int i = 0; i < 25; ++i)
+        keySquare[(i / 5)][(i % 5)] = tempKey[i];
+
+    return keySquare;
+}
+
+ void username::GetPosition(char** keySquare, char ch, int* row, int* col)
+{
+    if (ch == 'J')
+        GetPosition(keySquare, 'I', row, col);
+
+    for (int i = 0; i < 5; ++i)
+        for (int j = 0; j < 5; ++j)
+            if (keySquare[i][j] == ch)
+            {
+                *row = i;
+                *col = j;
+                return;
+            }
+}
+
+ char* username::SameRow(char** keySquare, int row, int col1, int col2, int encipher)
+{
+    return new char[2] { keySquare[row][Mod((col1 + encipher), 5)], keySquare[row][Mod((col2 + encipher), 5)] };
+}
+
+ char* username::SameColumn(char** keySquare, int col, int row1, int row2, int encipher)
+{
+    return new char[2] { keySquare[Mod((row1 + encipher), 5)][col], keySquare[Mod((row2 + encipher), 5)][col] };
+}
+
+ char* username::SameRowColumn(char** keySquare, int row, int col, int encipher)
+{
+    return new char[2] { keySquare[Mod((row + encipher), 5)][Mod((col + encipher), 5)], keySquare[Mod((row + encipher), 5)][Mod((col + encipher), 5)] };
+}
+
+ char* username::DifferentRowColumn(char** keySquare, int row1, int col1, int row2, int col2)
+{
+    return new char[2] { keySquare[row1][col2], keySquare[row2][col1] };
+}
+
+ string username::RemoveOtherChars(string input)
+{
+    string output = input;
+    int strLen = input.size();
+
+    for (int i = 0; i < strLen; ++i)
+        if (!isalpha(output[i]))
+            output = output.erase(i, 1);
+
+    return output;
+}
+
+ string username::AdjustOutput(string input, string output)
+{
+    string retVal = output;
+    int strLen = input.size();
+
+    for (int i = 0; i < strLen; ++i)
+    {
+        if (!isalpha(input[i]))
+            retVal = retVal.insert(i, 1, input[i]);
+
+        if (islower(input[i]))
+            retVal[i] = tolower(retVal[i]);
+    }
+
+    return retVal;
+}
+
+ string username::Cipher(string input, string key, bool encipher)
+{
+    string retVal = "";
+    char** keySquare = GenerateKeySquare(key);
+    string tempInput = RemoveOtherChars(input);
+    int e = encipher ? 1 : -1;
+    int tempInputLen = tempInput.size();
+
+    if ((tempInputLen % 2) != 0)
+        tempInput += "X";
+
+    for (int i = 0; i < tempInputLen; i += 2)
+    {
+        int row1 = 0;
+        int col1 = 0;
+        int row2 = 0;
+        int col2 = 0;
+
+        GetPosition(keySquare, toupper(tempInput[i]), &row1, &col1);
+        GetPosition(keySquare, toupper(tempInput[i + 1]), &row2, &col2);
+
+        if (row1 == row2 && col1 == col2)
+        {
+            retVal += string(SameRowColumn(keySquare, row1, col1, e), 2);
+        }
+        else if (row1 == row2)
+        {
+            retVal += string(SameRow(keySquare, row1, col1, col2, e), 2);
+        }
+        else if (col1 == col2)
+        {
+            retVal += string(SameColumn(keySquare, col1, row1, row2, e), 2);
+        }
+        else
+        {
+            retVal += string(DifferentRowColumn(keySquare, row1, col1, row2, col2), 2);
+        }
+    }
+
+    retVal = AdjustOutput(input, retVal);
+
+    return retVal;
+}
+
+ string username::Encipher(string input, string key)
+{
+    return Cipher(input, key, true);
+}
+
+ string username::Decipher(string input, string key)
+{
+    return Cipher(input, key, false);
 }

@@ -1,2 +1,2 @@
 encryption: encryption.cpp
-	g++ encryption.cpp username.cpp helpers.cpp base64.cpp
+	g++ encryption.cpp username.cpp helpers.cpp base64.cpp passwords.cpp monarch.cpp

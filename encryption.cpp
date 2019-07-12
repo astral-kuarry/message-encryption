@@ -266,7 +266,6 @@ void test(){
     username test7 = username("BCRCOHCSIJ", "286869756844");
     username test8 = username("BCRCOHCSIJ", "103723971119");
 
-
     //Test Cases
     /*
     for (int i = 0; i < 1000; i++){

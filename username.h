@@ -16,7 +16,6 @@ class username {
 public:
 	username(string date, string text);	
 	virtual ~username();
-	long long getFrac(long double input, int numDigits);
 	bool checkPrime(long long number);
 	bool checkConsonant(char letter);
 	bool checkAscending(string numString);
@@ -28,7 +27,6 @@ public:
 	string digitNumShift(string input, int numDigits);
 	string intToString (int arry[], int size);
 	string deleteDig (string input, int numDigits);
-	int stringRemoveNonAlphaNum(char *str);
 	string invertNumToLet(string input);
 	string excise(string input, string excise);
 	string getTableKey(string date, string text);

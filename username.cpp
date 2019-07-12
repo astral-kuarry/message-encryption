@@ -1,6 +1,7 @@
 #include "username.h"
 #include "helpers.h"
 #include <iostream>
+#include<stdlib.h>
 #include <sstream> 
 #include <string>
 #include <array>
@@ -33,7 +34,7 @@ username::username(string text, string date) {
         plaintextArry[index] = tableKeyArry[j];
         index++;
     }
-    plaintextArry[tableKey.size()-midPoint] = '\0';
+    plaintextArry[tableKey.size() - midPoint] = '\0';
 
     string keyword(keywordArry);
     string plaintext(plaintextArry);
@@ -242,144 +243,141 @@ string username::deleteDig (string input, int numDigits){
 
 string username::invertNumToLet(string input){
     console.log("invert num to let");
-    //printf("Input: %s\n",input.c_str());
-    char inputArry[100];
+    int i,j,k;
+    j = 0;
+    char inputArry[input.size()];
+    int num;
+    int inputDig;
+    int inputDigPlusOne;
     strcpy(inputArry, input.c_str());
-    char newArry[] = {0};
-    int size = sizeof(inputArry)/sizeof(inputArry[0]) - 1;
-    int i = 0;
-    int j = 0;
-    //printf("size: %d\n",size);
-
-    while (i < size) {
-       // printf("%d value: %c\n",i,inputArry[i]);
-        if (inputArry[i] == 0) {
-            i++;
-        } else if ((inputArry[i] == '1') && (i != size - 1)){
-            //printf("check1\n");
-            switch(inputArry[i+1]) {
-                case '0' :
-                    newArry[j] = 'J';
-                    j++;
-                    //printf("check1111:%c at j value: %d\n",newArry[j],j);
-                    break;
-                case '1' :
-                    newArry[j] = 'K';
-                    j++;
-                    break;
-                case '2' :
-                    newArry[j] = 'L';
-                    j++;
-                    break;
-                case '3' :
-                    newArry[j] = 'M';
-                    j++;
-                    break;
-                case '4' :
-                    newArry[j] = 'N';
-                    j++;
-                    break;
-                case '5' :
-                    newArry[j] = 'O';
-                    j++;
-                    break;
-                case '6' :
-                    newArry[j] = 'P';
-                    j++;
-                    break;
-                case '7' :
-                    newArry[j] = 'Q';
-                    j++;
-                    break;
-                case '8' :
-                    newArry[j] = 'R';
-                    j++;
-                    break;
-                case '9' :
-                    newArry[j] = 'S';
-                    j++;
-                    break;
+    int size = sizeof(inputArry)/sizeof(inputArry[0]);
+    char outputArry[100];
+    for (i = 0; i < size; i++){
+        if (!isdigit(inputArry[i])) {
+            outputArry[j] = inputArry[i];
+            j++;
+        } else{
+            inputDig = inputArry[i] - '0';
+            inputDigPlusOne = inputArry[i+1] - '0';
+            num = inputDig * 10 + inputDigPlusOne;
+            //cout << num << " " << inputDig << " " << inputDigPlusOne << endl;
+            //cout << size << endl;
+            if (inputDig != 0){
+                if (num > 26 || i == size-1){
+                    if (inputDig == 1){
+                        outputArry[j] = 'A';
+                        j++;
+                    }
+                    if (inputDig == 2){
+                        outputArry[j] = 'B';
+                        j++;
+                    }
+                    if (inputDig == 3){
+                        outputArry[j] = 'C';
+                        j++;
+                    }
+                    if (inputDig == 4){
+                        outputArry[j] = 'D';
+                        j++;
+                    }
+                    if (inputDig == 5){
+                        outputArry[j] = 'E';
+                        j++;
+                    }
+                    if (inputDig == 6){
+                        outputArry[j] = 'F';
+                        j++;
+                    }
+                    if (inputDig == 7){
+                        outputArry[j] = 'G';
+                        j++;
+                    }
+                    if (inputDig == 8){
+                        outputArry[j] = 'H';
+                        j++;
+                    }
+                    if (inputDig == 9) {
+                        outputArry[j] = 'I';
+                        j++;
+                    }
+                } else{
+                    if (num == 10){
+                        outputArry[j] = 'J';
+                        j++;
+                    }
+                    if (num == 11){
+                        outputArry[j] = 'K';
+                        j++;
+                    }
+                    if (num == 12){
+                        outputArry[j] = 'L';
+                        j++;
+                    }
+                    if (num == 13){
+                        outputArry[j] = 'M';
+                        j++;
+                    }
+                    if (num == 14){
+                        outputArry[j] = 'N';
+                        j++;
+                    }
+                    if (num == 15){
+                        outputArry[j] = 'O';
+                        j++;
+                    }
+                    if (num== 16){
+                        outputArry[j] = 'P';
+                        j++;
+                    }
+                    if (num == 17){
+                        outputArry[j] = 'Q';
+                        j++;
+                    }
+                    if (num == 18) {
+                        outputArry[j] = 'R';
+                        j++;
+                    }
+                    if (num == 19) {
+                        outputArry[j] = 'S';
+                        j++;
+                    }
+                    if (num == 20) {
+                        outputArry[j] = 'T';
+                        j++;
+                    }
+                    if (num == 21) {
+                        outputArry[j] = 'U';
+                        j++;
+                    }
+                    if (num == 22) {
+                        outputArry[j] = 'V';
+                        j++;
+                    }
+                    if (num == 23) {
+                        outputArry[j] = 'W';
+                        j++;
+                    }
+                    if (num == 24) {
+                        outputArry[j] = 'X';
+                        j++;
+                    }
+                    if (num == 25) {
+                        outputArry[j] = 'Y';
+                        j++;
+                    }
+                    if (num == 26) {
+                        outputArry[j] = 'Z';
+                        j++;
+                    }
+                    i++;
+                }
             }
-            i += 2;
-        } else if ((inputArry[i] == '2') && (inputArry[i+1] != '\0') && (inputArry[i+1] != '7' || inputArry[i+1] != '8' || inputArry[i+1] != '9')){
-            //printf("check2\n");
-            switch(inputArry[i+1]) {
-                case '0' :
-                    newArry[j] = 'T';
-                    j++;
-                    break;
-                case '1' :
-                    newArry[j] = 'U';
-                    j++;
-                    break;
-                case '2' :
-                    newArry[j] = 'V';
-                    j++;
-                    break;
-                case '3' :
-                    newArry[j] = 'W';
-                    j++;
-                    break;
-                case '4' :
-                    newArry[j] = 'X';
-                    j++;
-                    break;
-                case '5' :
-                    newArry[j] = 'Y';
-                    j++;
-                    break;
-                case '6' :
-                    newArry[j] = 'Z';
-                    j++;
-                    break;
-            }
-            i += 2;
-        } else {
-            //printf("check0\n");
-            switch(inputArry[i]) {
-                case '1' :
-                    newArry[j] = 'A';
-                    j++;
-                    break;
-                case '2' :
-                    newArry[j] = 'B';
-                    j++;
-                    break;
-                case '3' :
-                    newArry[j] = 'C';
-                    j++;
-                    break;
-                case '4' :
-                    newArry[j] = 'D';
-                    j++;
-                    break;
-                case '5' :
-                    newArry[j] = 'E';
-                    j++;
-                    break;
-                case '6' :
-                    newArry[j] = 'F';
-                    j++;
-                    break;
-                case '7' :
-                    newArry[j] = 'G';
-                    j++;
-                    break;
-                case '8' :
-                    newArry[j] = 'H';
-                    j++;
-                    break;
-                case '9' :
-                    newArry[j] = 'I';
-                    j++;
-                    break;
-            }
-            i++;
         }
     }
-    //printf("checkkkk: %c\n",newArry[0]);
-    string str(newArry);
-    //cout << str << endl;
+
+    outputArry[j] = '\0';
+    //cout << i << " " << j << endl;
+    string str(outputArry);
     return str;
 }
 
@@ -1034,3 +1032,4 @@ string username::getTableKey(string text, string date){
     return result;
 
 }
+

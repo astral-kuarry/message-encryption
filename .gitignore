@@ -25,6 +25,7 @@
 *.la
 *.a
 *.lib
+*.project
 
 # Executables
 *.exe
@@ -33,3 +34,5 @@
 
 /.vscode/
 .DS_Store
+/cmake-build-debug-mingw/
+/.idea/

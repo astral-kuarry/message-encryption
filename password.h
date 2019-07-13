@@ -13,7 +13,9 @@ public:
     password(string rawplaintext, string rawciphertext);
     virtual ~password();
     bool getParity(long long num);
-    bool checkInstruct2();
+    bool checkInstruct1();
+    long long int getFrac(long double input, int numDigits);
+    string getOp1();
     string plaintext;
     string ciphertext;
     int m;

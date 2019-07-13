@@ -16,6 +16,7 @@ public:
     void printCharArray(char arr[], int size);
     void log(string input);
     void log(int input);
+
 private:
 
 };

@@ -201,7 +201,7 @@ long long int getFrac(long double input, int numDigits) {
         while (fractpart < 0.1) {
             fractpart *= 10;
         }
-    }    
+    }
     for (int i = 1; i <= numDigits; i++) {
         fractpart *= 10;
     }

@@ -1,15 +1,25 @@
+#include <string>
+#include <cstring>
+#include <vector>
+
+using namespace std;
+
 #ifndef PASSWORD_H_
 #define PASSWORD_H_
 
-namespace password {
 
 class password {
 public:
-	password();
-	virtual ~password();
+    password(string rawplaintext, string rawciphertext);
+    virtual ~password();
     bool getParity(long long num);
-};
+    bool checkInstruct2();
+    string plaintext;
+    string ciphertext;
+    int m;
+    int n;
+private:
 
-} /* namespace password */
+};
 
 #endif /* PASSWORD_H_ */

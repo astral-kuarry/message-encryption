@@ -44,10 +44,12 @@ username::username(string text, string date) {
     username::keyword = str;
     username::plaintext = str1;
     username::ciphertext = Encipher(keyword, plaintext);
-    cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl << "ciphertext: " << ciphertext << endl;
+    //cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl << "ciphertext: " << ciphertext << endl;
     
 }
+username::username(){
 
+}
 username::~username() {
 	// TODO Auto-generated destructor stub
 }

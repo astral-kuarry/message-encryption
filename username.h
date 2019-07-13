@@ -16,7 +16,8 @@ using namespace std;
 
 class username {
 public:
-	username(string date, string text);	
+	username(string date, string text);
+    username();
 	virtual ~username();
 	bool checkPrime(long long number);
 	bool checkConsonant(char letter);

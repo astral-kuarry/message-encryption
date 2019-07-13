@@ -11,6 +11,7 @@
 #include "base64.h"
 #include "helpers.h"
 #include "stdlib.h"
+#include "password.h"
 #include <string>
 #include <array>
 #include <cstring>
@@ -258,13 +259,15 @@ void test(){
     cout << part2.checkEvenB("PEOPLEWHOH") << endl;
     cout << part2.checkEvenC("EEEEEEEEEE") << endl;   */
     username test1 = username("RXRCOHCSIJ", "234237847219");
-    username test2 = username("BCRCOHCSIJ", "234237847219");
-    username test3 = username("BFRFOHFSIJ", "234237847219");
+    password test1pass = password(test1.plaintext, test1.ciphertext);
+    //username test2 = username("BCRCOHCSIJ", "234237847219");
+    //password test2pass = password(test2.plaintext, test2.ciphertext);
+    /*username test3 = username("BFRFOHFSIJ", "234237847219");
     username test4 = username("UVRVOHVSIJ", "234237847219");
     username test5 = username("UVRVOHVSIJ", "284237847219");
     username test6 = username("UVRVOHVSIJ", "286869756844");
     username test7 = username("BCRCOHCSIJ", "286869756844");
-    username test8 = username("BCRCOHCSIJ", "103723971119");
+    username test8 = username("BCRCOHCSIJ", "103723971119");*/
 
     //Test Cases
     /*

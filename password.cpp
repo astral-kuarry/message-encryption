@@ -21,9 +21,7 @@ password::password(string rawplaintext, string rawciphertext) {
     password::m = password::plaintext.length();
     password::n = password::ciphertext.length();
     cout << plaintext << endl << ciphertext << endl;
-    cout <<  getOp2() << endl;
-    cout << checkInstruct3() << endl;
-    getOp3();
+
 
 }
 
@@ -50,7 +48,7 @@ bool password::checkInstruct1(){
     return false;
 }
 
-string password::getOp1(){
+string password::getOp1(bool op4){
     int i, j, k;
     long double top = 0; //genius naming scheme
     long double bottom = 0;
@@ -63,7 +61,12 @@ string password::getOp1(){
         bottom = bottom + (long double) pow((long double) j + (long double) (1/m) - 1, (long double) log(n - 1));  // Convert everything just to be safe.
     }
     finalNum = top / bottom;
-    targetKeyNum = getFrac(finalNum, 8);
+    if (op4){
+        targetKeyNum = getFrac(finalNum, 5);
+    } else{
+        targetKeyNum = getFrac(finalNum, 8);
+    }
+
     std::string target;
     std::stringstream strstream;
     strstream << targetKeyNum;
@@ -196,18 +199,17 @@ bool password::checkInstruct3(){
     }
 }
 
-string password::getOp3(){ //fuck me with this
-    string cipher = ciphertext;
+string password::getOp3(string cipher){ //fuck me with this
     //cipher = "14159";
     string target;
     for (int j = cipher.length(); j <= 5; j++){
         cipher = cipher + "0";
     }
     int first = cipher.at(0) - '0';
-    int second = cipher.at(1)- '0';
-    int third = cipher.at(2)- '0';
-    int fourth = cipher.at(3)- '0';
-    int fifth = cipher.at(4)- '0';
+    int second = cipher.at(1) - '0';
+    int third = cipher.at(2) - '0';
+    int fourth = cipher.at(3) - '0';
+    int fifth = cipher.at(4) - '0';
     bool flag = true;
     int i;
     int length = 5;
@@ -263,4 +265,112 @@ string password::getOp3(){ //fuck me with this
     }
     return target;
 }
+
+string password::getOp4() {
+    string num = getOp1(true);
+    return getOp3(num);
+}
+
+string password::getOp5() {
+    int i, j, k;
+    int plaintextArry[100][100];
+    int ciphertextArry[100][100];
+    for (i = 0; i < m; i++){
+        plaintextArry[i][0] = plaintext.at(i) - '0';
+        plaintextArry[i][1] = i + 1;
+    }
+    for (j = 0; j < n; j++){
+        ciphertextArry[j][0] = ciphertext.at(j) - '0';
+        ciphertextArry[j][1] = j + 1;
+    }
+    int temp;
+    for (i = 0; i < m-1; i++){
+        for (j = 0;j<m-i-1; j++){
+            if (plaintextArry[j][0] > plaintextArry[j+1][0]){
+                temp = plaintextArry[j][0];
+                plaintextArry[j][0] = plaintextArry[j+1][0];
+                plaintextArry[j+1][0] = temp;
+                temp = plaintextArry[j][1];
+                plaintextArry[j][1] = plaintextArry[j+1][1];
+                plaintextArry[j+1][1] = temp;
+            }
+        }
+    }
+    for (i = 0; i < n-1; i++){
+        for (j = 0;j<n-i-1; j++){
+            if (ciphertextArry[j][0] > ciphertextArry[j+1][0]){
+                temp = ciphertextArry[j][0];
+                ciphertextArry[j][0] = ciphertextArry[j+1][0];
+                ciphertextArry[j+1][0] = temp;
+                temp = ciphertextArry[j][1];
+                ciphertextArry[j][1] = ciphertextArry[j+1][1];
+                ciphertextArry[j+1][1] = temp;
+            }
+        }
+    }
+
+    /*for (i=0; i < m; i++) {
+        printf("%d", plaintextArry[i][0]);
+    }printf("\n");
+    for (i=0; i < m; i++) {
+        printf("%d", plaintextArry[i][1]);
+    }printf("\n");
+    for (i=0; i < n; i++) {
+        printf("%d", ciphertextArry[i][0]);
+    }printf("\n");
+    for (i=0; i < n; i++) {
+        printf("%d", ciphertextArry[i][1]);
+    }printf("\n"); */
+
+    long long newplaintext = 0;
+    long long newciphertext = 0;
+    for ( i = 0; i < m; i++) {
+        int num = plaintextArry[i][1];
+        if (num != 0) {
+            while (num > 0) {
+                newplaintext *= 10;
+                num /= 10;
+            }
+            newplaintext += plaintextArry[i][1];
+        } else {
+            newplaintext *= 10;
+        }
+
+    }
+    for ( i = 0; i < n; i++) {
+        int num = ciphertextArry[i][1];
+        if (num != 0) {
+            while (num > 0) {
+                newciphertext *= 10;
+                num /= 10;
+            }
+            newciphertext += ciphertextArry[i][1];
+        } else {
+            newciphertext *= 10;
+        }
+
+    }
+    //cout << newplaintext << endl << newciphertext << endl;
+    long double division = (long double) newplaintext / newciphertext;
+    long long targetKeyNum = getFrac(division, 8);
+    //cout << division << endl << targetKeyNum << endl;
+    std::string target;
+    std::stringstream strstream;
+    strstream << targetKeyNum;
+    strstream >> target;
+    return target;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 

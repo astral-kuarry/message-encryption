@@ -17,9 +17,9 @@ public:
     bool checkInstruct1();
     bool checkInstruct3();
     bool checkInstruct2();
-    string getOp1();
+    string getOp1(bool op4);
     string getOp2();
-    string getOp3();
+    string getOp3(string cipher);
     string getOp4();
     string getOp5();
     string getOp6();

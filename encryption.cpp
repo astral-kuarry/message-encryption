@@ -260,6 +260,7 @@ void test(){
     cout << part2.checkEvenC("EEEEEEEEEE") << endl;   */
     username test1 = username("RXRCOHCSIJ", "234237847219");
     password test1pass = password(test1.plaintext, test1.ciphertext);
+    //cout << getFrac(15087.2, 8) << endl;
     //username test2 = username("BCRCOHCSIJ", "234237847219");
     //password test2pass = password(test2.plaintext, test2.ciphertext);
     /*username test3 = username("BFRFOHFSIJ", "234237847219");

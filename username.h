@@ -45,7 +45,7 @@ public:
 	bool checkEvenA(string text);
 	bool checkEvenB(string text);
 	bool checkEvenC(string text);
-	int intToNum(int arry[], int size);
+	long long intToNum(int arry[], int size);
 	int Mod(int a, int b);
     char** Create2DArray(int rowCount, int colCount);
     string ToUpper(string str);

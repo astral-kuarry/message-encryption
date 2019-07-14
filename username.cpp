@@ -19,7 +19,7 @@
 
 
 using namespace std;
-helpers console; 
+helpers console = helpers(false);
 
 username::username(string text, string date) {
 	string tableKey = invertNumToLet(getTableKey(text, date));

@@ -8,7 +8,7 @@ using namespace std;
 
 class helpers {
 public:
-	helpers();
+	helpers(bool ver);
 	virtual ~helpers();
     void swap(int *xp, int *yp);
     void sort(int arr[], int n);
@@ -16,6 +16,7 @@ public:
     void printCharArray(char arr[], int size);
     void log(string input);
     void log(int input);
+    bool verbose;
 
 private:
 

@@ -7,13 +7,14 @@
 #include <string>
 #include <stdio.h>
 #include <math.h>
+#include <complex>
 
 
 
 
 using namespace std;
 username part2;
-helpers console1;
+helpers console1 = helpers(true);
 
 password::password(string rawplaintext, string rawciphertext) {
     password::plaintext = part2.invertLetToNum(rawplaintext);
@@ -22,7 +23,34 @@ password::password(string rawplaintext, string rawciphertext) {
     password::n = password::ciphertext.length();
     cout << plaintext << endl << ciphertext << endl;
 
+    bool instruct1 = checkInstruct1();
+    bool instruct2 = checkInstruct2();
+    bool instruct3 = checkInstruct3();
 
+    if (instruct1 && instruct2 && instruct3){
+        console1.log("all true");
+        targetKey = getOp6();
+    } else if (instruct1 && instruct3){
+        console1.log("1 and 3 true");
+        targetKey = getOp4();
+    } else if ((instruct1 && instruct2) || (instruct2 && instruct3)){
+        console1.log("other combo true");
+        targetKey = getOp5();
+    } else if (instruct1){
+        console1.log("1 true");
+        targetKey = getOp1(false);
+    } else if (instruct2){
+        console1.log("2 true");
+        targetKey = getOp2();
+    } else if (instruct3){
+        console1.log("3 true");
+        targetKey = getOp3(ciphertext);
+    } else{
+        console1.log("none true");
+        targetKey = getOp7();
+    }
+
+    cout << targetKey << endl;
 }
 
 password::~password() {
@@ -49,6 +77,10 @@ bool password::checkInstruct1(){
 }
 
 string password::getOp1(bool op4){
+    if (!op4){
+        console1.log("GetOp 1");
+    }
+
     int i, j, k;
     long double top = 0; //genius naming scheme
     long double bottom = 0;
@@ -92,6 +124,7 @@ long long int password::getFrac(long double input, int numDigits) {
 }
 
 bool password::checkInstruct2(){
+    console1.log("Check Instruction 2");
     char plaintextArry[m+1];
     strcpy(plaintextArry, plaintext.c_str());
     char ciphertextArry[n+1];
@@ -113,6 +146,7 @@ bool password::checkInstruct2(){
 }
 
 string password::getOp2(){
+    console1.log("GetOp 2");
     int number = m * pow(m+n, n/5);
     //number = 235212;
     int factors[100];
@@ -173,6 +207,7 @@ string password::getOp2(){
 }
 
 bool password::checkInstruct3(){
+    console1.log("Check Instruction 3");
     char plaintextArry[m+1];
     strcpy(plaintextArry, plaintext.c_str());
     char ciphertextArry[n+1];
@@ -201,6 +236,10 @@ bool password::checkInstruct3(){
 
 string password::getOp3(string cipher){ //fuck me with this
     //cipher = "14159";
+    if (cipher == ciphertext){
+        console1.log("GetOp 3");
+    }
+
     string target;
     for (int j = cipher.length(); j <= 5; j++){
         cipher = cipher + "0";
@@ -267,11 +306,13 @@ string password::getOp3(string cipher){ //fuck me with this
 }
 
 string password::getOp4() {
+    console1.log("GetOp 4");
     string num = getOp1(true);
     return getOp3(num);
 }
 
 string password::getOp5() {
+    console1.log("GetOp 5");
     int i, j, k;
     int plaintextArry[100][100];
     int ciphertextArry[100][100];
@@ -359,6 +400,40 @@ string password::getOp5() {
     strstream << targetKeyNum;
     strstream >> target;
     return target;
+}
+
+string password::getOp6() {
+    console1.log("GetOp 6");
+    long double root1;
+    long double root2;
+    long long targetKeyNum;
+    int i,j,k;
+    double a, b, c;
+    a = m;
+    b = n;
+    c =  (double) pow(m, log(n));
+    if (pow(b,2)- 4 * a * c >= 0){
+        root1 = (-b + sqrt(b*b - 4 * a * c)) / (2 * a);
+        root2 = (-b - sqrt(b*b - 4 * a * c)) / (2 * a);
+    } else{
+        root1 =  sqrt(-(pow(b,2)- 4 * a * c)) / (2 * a);
+        root2 =  -sqrt(-(pow(b,2)- 4 * a * c)) / (2 * a);
+    }
+    if (root1 >= root2){
+        targetKeyNum = getFrac(root1, 8);
+    } else{
+        targetKeyNum = getFrac(root2, 8);
+    }
+    std::string target;
+    std::stringstream strstream;
+    strstream << targetKeyNum;
+    strstream >> target;
+    return target;
+}
+
+string password::getOp7() {
+    console1.log("GetOp 7");
+    return "123455678";
 }
 
 

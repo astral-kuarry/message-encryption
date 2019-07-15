@@ -35,6 +35,7 @@
 /.vscode/
 .DS_Store
 /cmake-build-debug-mingw/
+/cmake-build-debug/
 /.idea/
 CMakeLists.txt
 *.project

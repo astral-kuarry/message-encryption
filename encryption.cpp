@@ -11,6 +11,7 @@
 #include "base64.h"
 #include "helpers.h"
 #include "stdlib.h"
+#include "password.h"
 #include <string>
 #include <array>
 #include <cstring>
@@ -200,7 +201,7 @@ long long int getFrac(long double input, int numDigits) {
         while (fractpart < 0.1) {
             fractpart *= 10;
         }
-    }    
+    }
     for (int i = 1; i <= numDigits; i++) {
         fractpart *= 10;
     }
@@ -258,13 +259,21 @@ void test(){
     cout << part2.checkEvenB("PEOPLEWHOH") << endl;
     cout << part2.checkEvenC("EEEEEEEEEE") << endl;   */
     username test1 = username("RXRCOHCSIJ", "234237847219");
+    password test1pass = password(test1.plaintext, test1.ciphertext);
     username test2 = username("BCRCOHCSIJ", "234237847219");
+    password test2pass = password(test2.plaintext, test2.ciphertext);
     username test3 = username("BFRFOHFSIJ", "234237847219");
+    password test3pass = password(test3.plaintext, test3.ciphertext);
     username test4 = username("UVRVOHVSIJ", "234237847219");
+    password test4pass = password(test4.plaintext, test4.ciphertext);
     username test5 = username("UVRVOHVSIJ", "284237847219");
+    password test5pass = password(test5.plaintext, test5.ciphertext);
     username test6 = username("UVRVOHVSIJ", "286869756844");
+    password test6pass = password(test6.plaintext, test6.ciphertext);
     username test7 = username("BCRCOHCSIJ", "286869756844");
+    password test7pass = password(test7.plaintext, test7.ciphertext);
     username test8 = username("BCRCOHCSIJ", "103723971119");
+    password test8pass = password(test8.plaintext, test8.ciphertext);
 
     //Test Cases
     /*

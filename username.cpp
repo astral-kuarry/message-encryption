@@ -1,7 +1,7 @@
 #include "username.h"
 #include "helpers.h"
 #include <iostream>
-#include<stdlib.h>
+#include <stdlib.h>
 #include <sstream> 
 #include <string>
 #include <array>
@@ -19,7 +19,7 @@
 
 
 using namespace std;
-helpers console; 
+helpers console = helpers(false);
 
 username::username(string text, string date) {
 	string tableKey = invertNumToLet(getTableKey(text, date));
@@ -44,27 +44,40 @@ username::username(string text, string date) {
     username::keyword = str;
     username::plaintext = str1;
     username::ciphertext = Encipher(keyword, plaintext);
-    cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl << "ciphertext: " << ciphertext << endl;
+    //cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl << "ciphertext: " << ciphertext << endl;
     
 }
+username::username(){
 
+}
 username::~username() {
 	// TODO Auto-generated destructor stub
 }
 
-bool username::checkPrime(long long number){
+bool username::checkPrime(long long n){
     console.log("Check Prime");
-    int flag = 1;
-    for (int i = 2; i <= sqrt(number) / 2; i++) {  
-        if (number % i == 0) { 
-            flag = 0; 
-            break; 
-        } 
-    } 
-    if (flag == 1) { 
+    //cout << n << endl;
+    int i, flag = 0;
+    for(i = 2; i <= n/2; ++i)
+    {
+        // condition for nonprime number
+        if(n%i == 0)
+        {
+            flag = 1;
+            break;
+        }
+    }
+    if (n == 1)
+    {
         return true;
-    } 
-    return false; 
+    }
+    else
+    {
+        if (flag == 0)
+            return true;
+        else
+            return false;
+    }
 }
 
 // Check if a letter is a consonant
@@ -138,7 +151,7 @@ void username::countInt(string input, int inputSize, int checkArry[], int checkA
     return; 
 }
 
-void username::countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]){
+ void username::countChar(string input, int inputSize, char checkArry[], int checkArrysize, int countArry[]){
     console.log("Count Char");
     int i,j,k,m;
     int count;
@@ -415,8 +428,8 @@ string username::excise(string input, string excise){
     return str;
 }
 
-int username::intToNum(int arry[], int size){
-    int finalNumber = 0;
+long long username::intToNum(int arry[], int size){
+    long long finalNumber = 0;
     for (int i = 0; i < size; i++) {
         int num = arry[i];
         if (num != 0) {

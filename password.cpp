@@ -14,15 +14,14 @@
 
 using namespace std;
 username part2;
-helpers console1 = helpers(true);
+helpers console1 = helpers(false);
 
 password::password(string rawplaintext, string rawciphertext) {
     password::plaintext = part2.invertLetToNum(rawplaintext);
     password::ciphertext = part2.invertLetToNum(rawciphertext);
     password::m = password::plaintext.length();
     password::n = password::ciphertext.length();
-    cout << plaintext << endl << ciphertext << endl;
-
+    cout << "Plaintext: " << plaintext << endl << "Ciphertext: " << ciphertext << endl;
     bool instruct1 = checkInstruct1();
     bool instruct2 = checkInstruct2();
     bool instruct3 = checkInstruct3();
@@ -50,7 +49,7 @@ password::password(string rawplaintext, string rawciphertext) {
         targetKey = getOp7();
     }
 
-    cout << targetKey << endl;
+    cout << "Target Key: " << targetKey << endl;
 }
 
 password::~password() {
@@ -349,20 +348,6 @@ string password::getOp5() {
             }
         }
     }
-
-    /*for (i=0; i < m; i++) {
-        printf("%d", plaintextArry[i][0]);
-    }printf("\n");
-    for (i=0; i < m; i++) {
-        printf("%d", plaintextArry[i][1]);
-    }printf("\n");
-    for (i=0; i < n; i++) {
-        printf("%d", ciphertextArry[i][0]);
-    }printf("\n");
-    for (i=0; i < n; i++) {
-        printf("%d", ciphertextArry[i][1]);
-    }printf("\n"); */
-
     long long newplaintext = 0;
     long long newciphertext = 0;
     for ( i = 0; i < m; i++) {
@@ -433,7 +418,41 @@ string password::getOp6() {
 
 string password::getOp7() {
     console1.log("GetOp 7");
-    return "123455678";
+    int plainArray[100];
+    int cipherArray[100];
+    int i,j,k;
+    long long plainNum = 0;
+    long long cipherNum = 0;
+    for (i = 0; i < 10; i++){
+        if (i < m){
+            plainArray[i] = plaintext.at(i) - '0';
+        } else{
+            plainArray[i] = 0;
+        }
+
+    }
+    for (i = 0; i < 10; i++){
+        if (i < n){
+            cipherArray[i] = ciphertext.at(i) - '0';
+        } else{
+            cipherArray[i] = 0;
+        }
+
+    }
+    for (j = 0; j < 10; j++){
+        plainNum = plainNum * 10 + cipherArray[plainArray[j]];
+        cipherNum = cipherNum * 10 + plainArray[cipherArray[j]];
+    }
+    //cout << plainNum << " " << cipherNum << " " << endl;
+    long double division = (long double) plainNum / cipherNum;
+    long long targetKeyNum = getFrac(division, 8);
+    //cout << division << endl << targetKeyNum << endl;
+    std::string target;
+    std::stringstream strstream;
+    strstream << targetKeyNum;
+    strstream >> target;
+    return target;
+
 }
 
 

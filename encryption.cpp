@@ -260,15 +260,20 @@ void test(){
     cout << part2.checkEvenC("EEEEEEEEEE") << endl;   */
     username test1 = username("RXRCOHCSIJ", "234237847219");
     password test1pass = password(test1.plaintext, test1.ciphertext);
-    //cout << getFrac(15087.2, 8) << endl;
-    //username test2 = username("BCRCOHCSIJ", "234237847219");
-    //password test2pass = password(test2.plaintext, test2.ciphertext);
-    /*username test3 = username("BFRFOHFSIJ", "234237847219");
+    username test2 = username("BCRCOHCSIJ", "234237847219");
+    password test2pass = password(test2.plaintext, test2.ciphertext);
+    username test3 = username("BFRFOHFSIJ", "234237847219");
+    password test3pass = password(test3.plaintext, test3.ciphertext);
     username test4 = username("UVRVOHVSIJ", "234237847219");
+    password test4pass = password(test4.plaintext, test4.ciphertext);
     username test5 = username("UVRVOHVSIJ", "284237847219");
+    password test5pass = password(test5.plaintext, test5.ciphertext);
     username test6 = username("UVRVOHVSIJ", "286869756844");
+    password test6pass = password(test6.plaintext, test6.ciphertext);
     username test7 = username("BCRCOHCSIJ", "286869756844");
-    username test8 = username("BCRCOHCSIJ", "103723971119");*/
+    password test7pass = password(test7.plaintext, test7.ciphertext);
+    username test8 = username("BCRCOHCSIJ", "103723971119");
+    password test8pass = password(test8.plaintext, test8.ciphertext);
 
     //Test Cases
     /*

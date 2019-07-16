@@ -7,7 +7,7 @@
 
 #include "monarch.h"
 
-namespace monarch {
+
 
 monarch::monarch() {
 	// TODO Auto-generated constructor stub
@@ -18,4 +18,3 @@ monarch::~monarch() {
 	// TODO Auto-generated destructor stub
 }
 
-} /* namespace monarch */

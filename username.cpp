@@ -472,7 +472,7 @@ bool username::checkOdd1(string date){
 
 bool username::checkOdd2(string date){
     console.log("checkOdd2");
-    stringstream changeThis(date); 
+    stringstream changeThis(date[0]);
     long long dateNum = 0; 
     changeThis >> dateNum;
 

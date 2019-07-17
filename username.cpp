@@ -472,11 +472,8 @@ bool username::checkOdd1(string date){
 
 bool username::checkOdd2(string date){
     console.log("checkOdd2");
-    stringstream changeThis(date[0]);
-    long long dateNum = 0; 
-    changeThis >> dateNum;
 
-    return checkPrime(dateNum);
+    return checkPrime(date.at(0) - '0');
 }
 
 bool username::checkOdd3(string date){

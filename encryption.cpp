@@ -12,6 +12,7 @@
 #include "helpers.h"
 #include "stdlib.h"
 #include "password.h"
+#include "monarch.h"
 #include <string>
 #include <array>
 #include <cstring>
@@ -209,58 +210,11 @@ long long int getFrac(long double input, int numDigits) {
 }
 
 void test(){
-	 /* username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
-	helpers help;
-	int mark[5] = {19, 10, 8, 17, 9};
-    help.sort(mark, 5);
-    help.printIntArray(mark, 5);
-    string s = "THIS IS A TEST";
-    int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
-    int size = sizeof(test)/sizeof(test[0]);
-    cout << part2.intToString(test, size) << "\n";
-    cout << getTextKey("People who have met their online friends, what made you instantly regret it?") << "\n";
-    cout << getTextKey("What are some things you realised too late in life?") << "\n";
-    cout << getTextKey("\"Bott!23as is the meat in a ferrari sandwitch ")<< "\n";
-    cout << getTextKey("  test§¶•hªº–≠ test ")<< "\n";
-    cout << getTextKey("Formula.1.2019x09.Austria.Race.SkyF1HD.Smcgill1969")<< "\n";
-    cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
-    cout << getTextKey("  123werwerwere")<< "\n";
-   cout << getDateKey() << endl;
-    cout << "True Prime: " << part2.checkPrime(997) << endl << "False Prime: " << part2.checkPrime(38) << endl;
-    cout << "False Consonant: " << part2.checkConsonant('E') << endl;
-    cout << part2.checkAscending("111111567811") << endl;
-    //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
-    //cout << "\n" << encoded << "\n";
-    int countArry1[100];
-    int countArry3[200];
-    int countArryChar[100];
-    //int checkArry3[146] = {101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997};
-    int checkArry1[5] = {1,2,3,4};
-    char checkArry[5] = {'A','G','R','T'};
-    part2.countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
-    //part2.countInt("12787687278", 11, checkArry3, 146, countArry3, 2);
-    part2.countChar("AGGGGG", 7, checkArry, 4, countArryChar);
-    help.printArray(countArry1, 4);
-    //help.printArray(countArry3, 146);
-    for (int i; i < 4; i++){
-        cout << countArryChar[i];
-    }
-    cout << endl;
-    //cout << part2.invertNumToLet("3332");
-	printf("CCCB:   %s\n", part2.invertNumToLet("3332").c_str());
-    string letters = "CURBATM";
-    string letterscheck = part2.invertNumToLet("398472023");
-    string check = part2.excise(letters,letterscheck);
-    printf("ans: %s\n",check.c_str());
-    string even1 = "111111111111";
-    string even2 = "479582694388";
-    cout << "False: " << part2.checkEven1(even1) << endl;
-    cout << "True: " << part2.checkEven2(even2) << endl; 
-    cout << part2.checkEvenB("PEOPLEWHOH") << endl;
-    cout << part2.checkEvenC("EEEEEEEEEE") << endl;   */
+
 	 cout << "test1" << endl;
     username test1 = username("RXRCOHCSIJ", "234237847219");
     password test1pass = password(test1.plaintext, test1.ciphertext);
+    monarch test1mon = monarch(test1pass.targetKey);/*
     cout << "test2"<< endl;
     username test2 = username("BCRCOHCSIJ", "234237847219");
     password test2pass = password(test2.plaintext, test2.ciphertext);
@@ -281,14 +235,8 @@ void test(){
     password test7pass = password(test7.plaintext, test7.ciphertext);
     cout << "test8"<< endl;
     username test8 = username("BCRCOHCSIJ", "103723971119");
-    password test8pass = password(test8.plaintext, test8.ciphertext);
+    password test8pass = password(test8.plaintext, test8.ciphertext);*/
 
-    //Test Cases
-    /*
-    for (int i = 0; i < 1000; i++){
-        username test = username(getTextKey("Whats a good/fun way to waste your sunday before you have to go back to work on Monday?"), getDateKey());
-        sleep(1);
-    }*/
 
     
 

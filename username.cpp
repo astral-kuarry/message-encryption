@@ -1,5 +1,5 @@
-#include "username.h"
-#include "helpers.h"
+#include "headers/username.h"
+#include "headers/helpers.h"
 #include <iostream>
 #include <stdlib.h>
 #include <sstream> 

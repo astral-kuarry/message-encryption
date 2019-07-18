@@ -1,10 +1,10 @@
 #include <iostream>
 #include <stdio.h>
-#include "username.h"
-#include "helpers.h"
+#include "headers/username.h"
+#include "headers/helpers.h"
 #include "stdlib.h"
-#include "password.h"
-#include "monarch.h"
+#include "headers/password.h"
+#include "headers/monarch.h"
 #include <string>
 #include <array>
 #include <sstream>

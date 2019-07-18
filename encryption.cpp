@@ -7,12 +7,12 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "username.h"
-#include "base64.h"
-#include "helpers.h"
+#include "headers/username.h"
+#include "headers/base64.h"
+#include "headers/helpers.h"
 #include "stdlib.h"
-#include "password.h"
-#include "monarch.h"
+#include "headers/password.h"
+#include "headers/monarch.h"
 #include <string>
 #include <array>
 #include <cstring>

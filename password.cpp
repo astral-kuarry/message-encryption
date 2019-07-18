@@ -1,6 +1,6 @@
-#include "password.h"
-#include "helpers.h"
-#include "username.h"
+#include "headers/password.h"
+#include "headers/helpers.h"
+#include "headers/username.h"
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>

@@ -20,12 +20,13 @@ monarch::monarch(string targetKey) {
     string nationKey;
     string alphabeticKey;
     string numericKey;
-
+    int index;
 	getDateKey(targetKey);
-    cout << dateKey << endl;
-	monarchKey = getMonarchString();
-	houseKey = getHouseString();
-	nationKey = getNationString();
+    index = searchMonarch();
+	monarchKey = getMonarchString(index);
+	houseKey = getHouseString(index);
+	nationKey = getNationString(index);
+    cout << "Date Key: " << dateKey << endl;
 
 }
 
@@ -68,17 +69,103 @@ void monarch::getDateKey(string targetKey){
 }
 
 int monarch::searchMonarch(){
+    int i, j, k;
+    bool searching = true;
+    int year, month, day;
+    int targetYear = 0;
+    int targetMonth = 0;
+    int targetDay = 0;
+    int yeardiff = 1000;
+    int monthdiff = 1000;
+    int daydiff = 1000;
+
+    int index = 0;
+    string targetYearS, targetMonthS, targetDayS;
+
+    bool days, months, years;
+    int slash;
+    int size = sizeof(monarchArray)/sizeof(monarchArray[0]);
+    //dateKey = "11121964";
+    year = (((dateKey.at(4) - '0') * 10 + (dateKey.at(5) - '0')) * 10 + (dateKey.at(6) - '0')) * 10 + (dateKey.at(7)- '0');
+    month = (dateKey.at(0) - '0') * 10 + (dateKey.at(1) - '0');
+    day = (dateKey.at(2) - '0') * 10 + (dateKey.at(3) - '0');
+
+    //cout << year << " " << month << " " << day << endl;
+    for (i = 1; i < size-16; i+=4){
+        months = true;
+        days = false;
+        years = false;
+        slash = 0;
+        targetDayS = "0";
+        targetMonthS = "0";
+        targetYearS = "0";
+
+        for (j = 0; j < monarchArray[i].length(); j++){
+            if (monarchArray[i].at(j) == '/' && slash == 0){
+                months = false;
+                days = true;
+                j++;
+                slash++;
+            }
+            if (monarchArray[i].at(j) == '/' && slash == 1){
+                days = false;
+                years = true;
+                j++;
+                slash++;
+            }
+            if (months){
+                targetMonthS = targetMonthS + monarchArray[i].at(j);
+            }else if (days){
+                targetDayS = targetDayS + monarchArray[i].at(j);
+            }else if (years){
+                targetYearS = targetYearS + monarchArray[i].at(j);
+            }
+        }
+        stringstream convertyear(targetYearS);
+        convertyear >> targetYear;
+        stringstream convertmonth(targetMonthS);
+        convertmonth >> targetMonth;
+        stringstream convertday(targetDayS);
+        convertday >> targetDay;
+        //cout << targetMonth << " " << targetDay << " " << targetYear << endl;
+        if (abs(year - targetYear) <= yeardiff){
+            if (yeardiff){
+                yeardiff = abs(year - targetYear);
+                index = i;
+                monthdiff = abs(month - targetMonth);
+            } else {
+                if (abs(month - targetMonth) <= monthdiff){
+                    if (monthdiff){
+                        monthdiff = abs(month - targetMonth);
+                        index = i;
+                        daydiff = abs(day - targetDay);
+                    } else{
+                        if (abs(day - targetDay) <= daydiff){
+                            if (daydiff){
+                                daydiff = abs(day - targetDay);
+                                index = i;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+
+    }
+    //cout << monarchArray[index];
+    return index;
 
 }
 
-string monarch::getMonarchString(){
+
+string monarch::getMonarchString(int index){
 
 }
 
-string monarch::getHouseString(){
+string monarch::getHouseString(int index){
 
 }
 
-string monarch::getNationString(){
+string monarch::getNationString(int index){
 
 }

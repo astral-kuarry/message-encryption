@@ -27,7 +27,7 @@ using namespace std;
 
 //functions
 void intro();
-void inputs(string *email, string *message, string *receivedKey, int *type);
+void inputs(string *email, string *inputDate, string *message, string *receivedKey, int *type);
 void email(string email, string message, string receivedKey, int type);
 string getTextKey(string message);
 //int stringRemoveNonAlphaNum(char *str);
@@ -38,24 +38,38 @@ string deleteDig (string input, int numDigits);
 helpers hlpMain = helpers(false);
 
 int main() {
-	test();
+	//test();
 	string email;
 	string message;
 	string receivedKey;
 	string textKey;
 	string dateKey;
 	int type;
-	inputs(&email, &message, &receivedKey, &type);
-	textKey = getTextKey(message);
-	dateKey = getDateKey();
-    username part2 = username(textKey, dateKey);
-
-	return 0;
+	string inputDate;
+	inputs(&email, &inputDate, &message, &receivedKey, &type);
+	cout << message << endl;
+	if (type == 1){
+        textKey = getTextKey(message);
+        dateKey = getDateKey();
+        username part2 = username(textKey, dateKey);
+        password part3 = password(part2.plaintext, part2.ciphertext);
+        monarch part4 = monarch(part3.targetKey);
+        cout << "Date Key: " << dateKey << endl << "Username: " << part2.theusername << endl << "Password: " << part4.password << endl;
+	}
+	if (type == 2) {
+        textKey = getTextKey(message);
+        dateKey = inputDate;
+        username part2 = username(textKey, dateKey);
+        password part3 = password(part2.plaintext, part2.ciphertext);
+        monarch part4 = monarch(part3.targetKey);
+        cout << "Username: " << part2.theusername << endl << "Password: " << part4.password << endl;
+	}
+    return 0;
 }
 
 // Prompts the user for inputs
-void inputs(string *email, string *message, string *receivedKey, int *type) { //Return email, message, time, and recieved keyword if recipient
-	system("clear");
+void inputs(string *email, string *inputDate, string *message, string *receivedKey, int *type) { //Return email, message, time, and recieved keyword if recipient
+	system("cls");
 	cout << "Welcome to AQ Encryption v1.0" << endl;
 	cout << "Enter your status ([1] sender, [2] receiver): ";
 	cin >> *type;
@@ -63,17 +77,19 @@ void inputs(string *email, string *message, string *receivedKey, int *type) { //
 		*type = 0;
 	}
 	if (*type == 1){
-	cout << "Enter email of recipient: ";
-	cin >> *email;
+	//cout << "Enter email of recipient: ";
+	//cin >> *email;
 	cout << "Enter message: ";
 	cin >> *message;
 	} else if (*type == 2){
+    cout << "Enter message: ";
+    cin >> *message;
 	cout << "Enter date key: ";
-	cin >> *message;
-	cout << "Enter keyword: ";
-	cin >> *receivedKey;
-	cout << "Enter email of sender: ";
-	cin >> *email;
+	cin >> *inputDate;
+	//cout << "Enter keyword: ";
+	//cin >> *receivedKey;
+	//cout << "Enter email of sender: ";
+	//cin >> *email;
 	} else{
 		cout << "Invalid Input\n";
 		exit(1);

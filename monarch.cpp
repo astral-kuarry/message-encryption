@@ -7,8 +7,8 @@
 #include "headers/monarch.h"
 #include <string>
 #include <array>
-#include <sstream>
 #include <iostream>
+#include <sstream>
 
 
 username usrnm;

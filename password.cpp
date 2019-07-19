@@ -53,7 +53,7 @@ password::password(string rawplaintext, string rawciphertext) {
         targetKey = getOp7();
     }
 
-    cout << "Target Key: " << targetKey << endl;
+    //cout << "Target Key: " << targetKey << endl;
 
 }
 

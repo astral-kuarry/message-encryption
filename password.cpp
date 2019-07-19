@@ -1,6 +1,6 @@
-#include "password.h"
-#include "helpers.h"
-#include "username.h"
+#include "headers/password.h"
+#include "headers/helpers.h"
+#include "headers/username.h"
 #include <iostream>
 #include <stdlib.h>
 #include <sstream>
@@ -21,10 +21,14 @@ password::password(string rawplaintext, string rawciphertext) {
     password::ciphertext = part2.invertLetToNum(rawciphertext);
     password::m = password::plaintext.length();
     password::n = password::ciphertext.length();
-    cout << "Plaintext: " << plaintext << endl << "Ciphertext: " << ciphertext << endl;
+    //cout << "Plaintext: " << plaintext << endl << "Ciphertext: " << ciphertext << endl;
     bool instruct1 = checkInstruct1();
     bool instruct2 = checkInstruct2();
     bool instruct3 = checkInstruct3();
+
+    //cout << getOp1(false) << endl << getOp2() << endl <<  getOp3(ciphertext) << endl << getOp4() << endl << getOp5() << endl << getOp6() << endl << getOp7() << endl;
+
+
 
     if (instruct1 && instruct2 && instruct3){
         console1.log("all true");
@@ -50,6 +54,7 @@ password::password(string rawplaintext, string rawciphertext) {
     }
 
     cout << "Target Key: " << targetKey << endl;
+
 }
 
 password::~password() {
@@ -129,13 +134,13 @@ bool password::checkInstruct2(){
     char ciphertextArry[n+1];
     strcpy(ciphertextArry, ciphertext.c_str());
     int i,j;
-    for (i = 0; i < m; i++){
+    for (i = 0; i < m-3; i++){
         if (part2.checkPrime(plaintextArry[i] - '0') && part2.checkPrime(plaintextArry[i+1] - '0') && part2.checkPrime(plaintextArry[i+2] - '0') && part2.checkPrime(plaintextArry[i+3] - '0')){
             //cout << "first" << " " << i << endl;
             return true;
         }
     }
-    for (j = 0; j < n; j++){
+    for (j = 0; j < n-3; j++){
         if (part2.checkPrime(ciphertextArry[j] - '0') && part2.checkPrime(ciphertextArry[j+1] - '0') && part2.checkPrime(ciphertextArry[j+2] - '0') && part2.checkPrime(ciphertextArry[j+3] - '0')){
             //cout << "second" << " " << j << endl;
             return true;
@@ -348,9 +353,24 @@ string password::getOp5() {
             }
         }
     }
+
     long long newplaintext = 0;
     long long newciphertext = 0;
-    for ( i = 0; i < m; i++) {
+    for (i = 0; i < 10; i++) {
+        if (i >= m) {
+            plaintextArry[i][0] = 0;
+            plaintextArry[i][1] = 0;
+        }
+    }
+
+    for (i = 0; i < 10; i++) {
+        if (i >= n) {
+            ciphertextArry[i][0] = 0;
+            ciphertextArry[i][1] = 0;
+        }
+    }
+
+    for ( i = 0; i < 10; i++) {
         int num = plaintextArry[i][1];
         if (num != 0) {
             while (num > 0) {
@@ -363,7 +383,7 @@ string password::getOp5() {
         }
 
     }
-    for ( i = 0; i < n; i++) {
+    for ( i = 0; i < 10; i++) {
         int num = ciphertextArry[i][1];
         if (num != 0) {
             while (num > 0) {

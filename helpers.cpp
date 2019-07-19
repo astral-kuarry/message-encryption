@@ -1,4 +1,4 @@
-#include "helpers.h"
+#include "headers/helpers.h"
 #include <iostream>
 #include <string>
 #include <array>
@@ -61,5 +61,22 @@ void helpers::log(int input){
         cout << input << endl;
     }
 }
-
+// Remove non-alphanumeric characters
+int helpers::stringRemoveNonAlphaNum(char *str)
+{
+    unsigned long i = 0;
+    unsigned long j = 0;
+    char c;
+    int loops = 0;
+    while ((c = str[i++]) != '\0')
+    {
+        if (isalnum(c) && !isdigit(c))
+        {
+            str[j++] = c;
+        }else{
+            loops++;
+        }
+    }
+    return loops;
+}
 

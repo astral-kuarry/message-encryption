@@ -17,6 +17,7 @@ public:
     void log(string input);
     void log(int input);
     bool verbose;
+    int stringRemoveNonAlphaNum(char *str);
 
 private:
 

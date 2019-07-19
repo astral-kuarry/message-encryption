@@ -7,11 +7,12 @@
 
 #include <iostream>
 #include <stdio.h>
-#include "username.h"
-#include "base64.h"
-#include "helpers.h"
+#include "headers/username.h"
+#include "headers/base64.h"
+#include "headers/helpers.h"
 #include "stdlib.h"
-#include "password.h"
+#include "headers/password.h"
+#include "headers/monarch.h"
 #include <string>
 #include <array>
 #include <cstring>
@@ -29,12 +30,12 @@ void intro();
 void inputs(string *email, string *message, string *receivedKey, int *type);
 void email(string email, string message, string receivedKey, int type);
 string getTextKey(string message);
-int stringRemoveNonAlphaNum(char *str);
+//int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
 long long int getFrac(long double input, int numDigits);
 void test();
 string deleteDig (string input, int numDigits);
-
+helpers hlpMain = helpers(false);
 
 int main() {
 	test();
@@ -125,7 +126,7 @@ string getTextKey(string message){
         }
     }
     finalArry[10] = '\0';
-    int loops = stringRemoveNonAlphaNum(finalArry);
+    int loops = hlpMain.stringRemoveNonAlphaNum(finalArry);
     if (loops > 0){
         for (int t = 9-loops+1; t < 10; t++){
             finalArry[t] = 'X';
@@ -135,24 +136,7 @@ string getTextKey(string message){
     return finalString;
 }
 
-// Remove non-alphanumeric characters
-int stringRemoveNonAlphaNum(char *str)
-{
-    unsigned long i = 0;
-    unsigned long j = 0;
-    char c;
-    int loops = 0;
-    while ((c = str[i++]) != '\0')
-    {
-        if (isalnum(c) && !isdigit(c))
-        {
-            str[j++] = c;
-        }else{
-            loops++;
-        }
-    }
-    return loops;
-}
+
 
 // Get date key
 string getDateKey(){
@@ -209,83 +193,62 @@ long long int getFrac(long double input, int numDigits) {
 }
 
 void test(){
-	 /* username part2 = username(getTextKey("People who have met their online friends, what made you instantly regret it?"), getDateKey());
-	helpers help;
-	int mark[5] = {19, 10, 8, 17, 9};
-    help.sort(mark, 5);
-    help.printIntArray(mark, 5);
-    string s = "THIS IS A TEST";
-    int test[] = {1,2,3,4,5,34,234,234,13,23,23,2};
-    int size = sizeof(test)/sizeof(test[0]);
-    cout << part2.intToString(test, size) << "\n";
-    cout << getTextKey("People who have met their online friends, what made you instantly regret it?") << "\n";
-    cout << getTextKey("What are some things you realised too late in life?") << "\n";
-    cout << getTextKey("\"Bott!23as is the meat in a ferrari sandwitch ")<< "\n";
-    cout << getTextKey("  test§¶•hªº–≠ test ")<< "\n";
-    cout << getTextKey("Formula.1.2019x09.Austria.Race.SkyF1HD.Smcgill1969")<< "\n";
-    cout << getTextKey("Men, what things do you enjoy that are typically considered “girly”?")<< "\n";
-    cout << getTextKey("  123werwerwere")<< "\n";
-   cout << getDateKey() << endl;
-    cout << "True Prime: " << part2.checkPrime(997) << endl << "False Prime: " << part2.checkPrime(38) << endl;
-    cout << "False Consonant: " << part2.checkConsonant('E') << endl;
-    cout << part2.checkAscending("111111567811") << endl;
-    //string encoded = base64_encode(reinterpret_cast<const unsigned char*>(s.c_str()), s.length());
-    //cout << "\n" << encoded << "\n";
-    int countArry1[100];
-    int countArry3[200];
-    int countArryChar[100];
-    //int checkArry3[146] = {101,103,107,109,113,127,131,137,139,149,151,157,163,167,173,179,181,191,193,197,199,211,223,227,229,233,239,241,251,257,263,269,271,277,281,283,293,307,311,313,317,331,337,347,349,353,359,367,373,379,383,389,397,401,409,419,421,431,433,439,443,449,457,461,463,467,479,487,491,499,503,509,521,523,541,547,557,563,569,571,577,587,593,599,601,607,613,617,619,631,641,643,647,653,659,661,673,677,683,691,701,709,719,727,733,739,743,751,757,761,769,773,787,797,809,811,821,823,827,829,839,853,857,859,863,877,881,883,887,907,911,919,929,937,941,947,953,967,971,977,983,991,997};
-    int checkArry1[5] = {1,2,3,4};
-    char checkArry[5] = {'A','G','R','T'};
-    part2.countInt("12787687278", 11, checkArry1, 4, countArry1, 1);
-    //part2.countInt("12787687278", 11, checkArry3, 146, countArry3, 2);
-    part2.countChar("AGGGGG", 7, checkArry, 4, countArryChar);
-    help.printArray(countArry1, 4);
-    //help.printArray(countArry3, 146);
-    for (int i; i < 4; i++){
-        cout << countArryChar[i];
-    }
-    cout << endl;
-    //cout << part2.invertNumToLet("3332");
-	printf("CCCB:   %s\n", part2.invertNumToLet("3332").c_str());
-    string letters = "CURBATM";
-    string letterscheck = part2.invertNumToLet("398472023");
-    string check = part2.excise(letters,letterscheck);
-    printf("ans: %s\n",check.c_str());
-    string even1 = "111111111111";
-    string even2 = "479582694388";
-    cout << "False: " << part2.checkEven1(even1) << endl;
-    cout << "True: " << part2.checkEven2(even2) << endl; 
-    cout << part2.checkEvenB("PEOPLEWHOH") << endl;
-    cout << part2.checkEvenC("EEEEEEEEEE") << endl;   */
+
+	 cout << "\nTest 1" << endl;
     username test1 = username("RXRCOHCSIJ", "234237847219");
     password test1pass = password(test1.plaintext, test1.ciphertext);
+    monarch test1mon = monarch(test1pass.targetKey);
+    cout << "Username: " << test1.theusername << endl << "Password: " << test1mon.password << endl;
+
+    cout << "\nTest 2"<< endl;
     username test2 = username("BCRCOHCSIJ", "234237847219");
     password test2pass = password(test2.plaintext, test2.ciphertext);
+    monarch test2mon = monarch(test2pass.targetKey);
+    cout << "Username: " << test2.theusername << endl << "Password: " << test2mon.password << endl;
+
+    cout << "\nTest 3"<< endl;
     username test3 = username("BFRFOHFSIJ", "234237847219");
     password test3pass = password(test3.plaintext, test3.ciphertext);
+    monarch test3mon = monarch(test3pass.targetKey);
+    cout << "Username: " << test3.theusername << endl << "Password: " << test3mon.password << endl;
+
+    cout << "\nTest 4"<< endl;
     username test4 = username("UVRVOHVSIJ", "234237847219");
     password test4pass = password(test4.plaintext, test4.ciphertext);
+    monarch test4mon = monarch(test4pass.targetKey);
+    cout << "Username: " << test4.theusername << endl << "Password: " << test4mon.password << endl;
+
+    cout << "\nTest 5"<< endl;
     username test5 = username("UVRVOHVSIJ", "284237847219");
     password test5pass = password(test5.plaintext, test5.ciphertext);
+    monarch test5mon = monarch(test5pass.targetKey);
+    cout << "Username: " << test5.theusername << endl << "Password: " << test5mon.password << endl;
+
+    cout << "\nTest 6"<< endl;
     username test6 = username("UVRVOHVSIJ", "286869756844");
     password test6pass = password(test6.plaintext, test6.ciphertext);
+    monarch test6mon = monarch(test6pass.targetKey);
+    cout << "Username: " << test6.theusername << endl << "Password: " << test6mon.password << endl;
+
+    cout << "\nTest 7"<< endl;
     username test7 = username("BCRCOHCSIJ", "286869756844");
     password test7pass = password(test7.plaintext, test7.ciphertext);
+    monarch test7mon = monarch(test7pass.targetKey);
+    cout << "Username: " << test7.theusername << endl << "Password: " << test7mon.password << endl;
+
+    cout << "\nTest 8"<< endl;
     username test8 = username("BCRCOHCSIJ", "103723971119");
     password test8pass = password(test8.plaintext, test8.ciphertext);
-
-    //Test Cases
-    /*
-    for (int i = 0; i < 1000; i++){
-        username test = username(getTextKey("Whats a good/fun way to waste your sunday before you have to go back to work on Monday?"), getDateKey());
-        sleep(1);
-    }*/
-
-    
+    monarch test8mon = monarch(test8pass.targetKey);
+    cout << "Username: " << test8.theusername << endl << "Password: " << test8mon.password << endl;
 
 
 
-	exit(1);
+
+
+
+
+
+    exit(1);
 }
 

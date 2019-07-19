@@ -66,6 +66,7 @@ public:
     string keyword;
     string plaintext;
     string ciphertext;
+    string theusername;
 
 
 

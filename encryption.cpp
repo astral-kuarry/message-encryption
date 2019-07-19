@@ -30,12 +30,12 @@ void intro();
 void inputs(string *email, string *message, string *receivedKey, int *type);
 void email(string email, string message, string receivedKey, int type);
 string getTextKey(string message);
-int stringRemoveNonAlphaNum(char *str);
+//int stringRemoveNonAlphaNum(char *str);
 string getDateKey();
 long long int getFrac(long double input, int numDigits);
 void test();
 string deleteDig (string input, int numDigits);
-
+helpers hlpMain = helpers(false);
 
 int main() {
 	test();
@@ -126,7 +126,7 @@ string getTextKey(string message){
         }
     }
     finalArry[10] = '\0';
-    int loops = stringRemoveNonAlphaNum(finalArry);
+    int loops = hlpMain.stringRemoveNonAlphaNum(finalArry);
     if (loops > 0){
         for (int t = 9-loops+1; t < 10; t++){
             finalArry[t] = 'X';
@@ -136,24 +136,7 @@ string getTextKey(string message){
     return finalString;
 }
 
-// Remove non-alphanumeric characters
-int stringRemoveNonAlphaNum(char *str)
-{
-    unsigned long i = 0;
-    unsigned long j = 0;
-    char c;
-    int loops = 0;
-    while ((c = str[i++]) != '\0')
-    {
-        if (isalnum(c) && !isdigit(c))
-        {
-            str[j++] = c;
-        }else{
-            loops++;
-        }
-    }
-    return loops;
-}
+
 
 // Get date key
 string getDateKey(){
@@ -211,37 +194,61 @@ long long int getFrac(long double input, int numDigits) {
 
 void test(){
 
-	 cout << "test1" << endl;
+	 cout << "\nTest 1" << endl;
     username test1 = username("RXRCOHCSIJ", "234237847219");
     password test1pass = password(test1.plaintext, test1.ciphertext);
-    monarch test1mon = monarch(test1pass.targetKey);/*
-    cout << "test2"<< endl;
+    monarch test1mon = monarch(test1pass.targetKey);
+    cout << "Username: " << test1.theusername << endl << "Password: " << test1mon.password << endl;
+
+    cout << "\nTest 2"<< endl;
     username test2 = username("BCRCOHCSIJ", "234237847219");
     password test2pass = password(test2.plaintext, test2.ciphertext);
-    cout << "test3"<< endl;
+    monarch test2mon = monarch(test2pass.targetKey);
+    cout << "Username: " << test2.theusername << endl << "Password: " << test2mon.password << endl;
+
+    cout << "\nTest 3"<< endl;
     username test3 = username("BFRFOHFSIJ", "234237847219");
     password test3pass = password(test3.plaintext, test3.ciphertext);
-    cout << "test4"<< endl;
+    monarch test3mon = monarch(test3pass.targetKey);
+    cout << "Username: " << test3.theusername << endl << "Password: " << test3mon.password << endl;
+
+    cout << "\nTest 4"<< endl;
     username test4 = username("UVRVOHVSIJ", "234237847219");
     password test4pass = password(test4.plaintext, test4.ciphertext);
-    cout << "test5"<< endl;
+    monarch test4mon = monarch(test4pass.targetKey);
+    cout << "Username: " << test4.theusername << endl << "Password: " << test4mon.password << endl;
+
+    cout << "\nTest 5"<< endl;
     username test5 = username("UVRVOHVSIJ", "284237847219");
     password test5pass = password(test5.plaintext, test5.ciphertext);
-    cout << "test6"<< endl;
+    monarch test5mon = monarch(test5pass.targetKey);
+    cout << "Username: " << test5.theusername << endl << "Password: " << test5mon.password << endl;
+
+    cout << "\nTest 6"<< endl;
     username test6 = username("UVRVOHVSIJ", "286869756844");
     password test6pass = password(test6.plaintext, test6.ciphertext);
-    cout << "test7"<< endl;
+    monarch test6mon = monarch(test6pass.targetKey);
+    cout << "Username: " << test6.theusername << endl << "Password: " << test6mon.password << endl;
+
+    cout << "\nTest 7"<< endl;
     username test7 = username("BCRCOHCSIJ", "286869756844");
     password test7pass = password(test7.plaintext, test7.ciphertext);
-    cout << "test8"<< endl;
+    monarch test7mon = monarch(test7pass.targetKey);
+    cout << "Username: " << test7.theusername << endl << "Password: " << test7mon.password << endl;
+
+    cout << "\nTest 8"<< endl;
     username test8 = username("BCRCOHCSIJ", "103723971119");
-    password test8pass = password(test8.plaintext, test8.ciphertext);*/
+    password test8pass = password(test8.plaintext, test8.ciphertext);
+    monarch test8mon = monarch(test8pass.targetKey);
+    cout << "Username: " << test8.theusername << endl << "Password: " << test8mon.password << endl;
 
 
-    
 
 
 
-	exit(1);
+
+
+
+    exit(1);
 }
 

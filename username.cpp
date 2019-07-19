@@ -1,5 +1,6 @@
 #include "headers/username.h"
 #include "headers/helpers.h"
+#include "headers/base64.h"
 #include <iostream>
 #include <stdlib.h>
 #include <sstream> 
@@ -45,7 +46,17 @@ username::username(string text, string date) {
     username::plaintext = str1;
     username::ciphertext = Encipher(keyword, plaintext);
     //cout << "keyword: " << keyword << endl << "plaintext: " << plaintext << endl << "ciphertext: " << ciphertext << endl;
-    
+    string rawUser = base64_encode(reinterpret_cast<const unsigned char*>(ciphertext.c_str()), ciphertext.length());
+
+    theusername = rawUser.at(0);
+    for (int i = 1; i < 12; i++){
+        if (i >= rawUser.length() || rawUser.at(i) == '='){
+            theusername = theusername + "X";
+        } else{
+            theusername = theusername + rawUser.at(i);
+        }
+    }
+
 }
 username::username(){
 

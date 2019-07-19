@@ -21,7 +21,7 @@ password::password(string rawplaintext, string rawciphertext) {
     password::ciphertext = part2.invertLetToNum(rawciphertext);
     password::m = password::plaintext.length();
     password::n = password::ciphertext.length();
-    cout << "Plaintext: " << plaintext << endl << "Ciphertext: " << ciphertext << endl;
+    //cout << "Plaintext: " << plaintext << endl << "Ciphertext: " << ciphertext << endl;
     bool instruct1 = checkInstruct1();
     bool instruct2 = checkInstruct2();
     bool instruct3 = checkInstruct3();

@@ -1,5 +1,5 @@
 
-f = open('monarch.txt', 'r')
+f = open('mail.txt', 'r')
 content = f.read()
 x = content.split()
-print(len(x))
+print(x)

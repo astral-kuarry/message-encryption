@@ -56,7 +56,9 @@ password::password(string rawplaintext, string rawciphertext) {
     //cout << "Target Key: " << targetKey << endl;
 
 }
+password::password(){
 
+}
 password::~password() {
     // TODO Auto-generated destructor stub
 }
@@ -116,13 +118,23 @@ long long int password::getFrac(long double input, int numDigits) {
     long double intpart;
     long double fractpart;
     fractpart = modf(input , &intpart);
+    int safety = 0;
     if (fractpart != 0.0) {
-        while (fractpart < 0.1) {
+        while (safety < 105 && fractpart < 0.1 ) {
             fractpart *= 10;
+            safety++;
         }
     }
+    //cout << "safety: " << safety << endl;
     for (int i = 1; i <= numDigits; i++) {
         fractpart *= 10;
+    }
+    //cout << fractpart << endl;
+    if (fractpart == 0 || safety >= 105){
+        for (int i = 1; i <= numDigits; i++){
+            fractpart = fractpart * 10 + i;
+        }
+        return fractpart;
     }
     return round(fractpart);
 }
@@ -201,8 +213,10 @@ string password::getOp2(){
     //console1.printIntArray(multiplicy, mindex);
     long long factorsNum = part2.intToNum(factors, index);
     long long multiplicityNum = part2.intToNum(multiplicy, mindex);
+    //cout << factorsNum << endl << multiplicityNum << endl;
     long double finalNum = (long double) factorsNum/multiplicityNum;
     long long targetKeyNum = getFrac(finalNum, 8);
+    //cout << targetKeyNum << endl;
     std::string target;
     std::stringstream strstream;
     strstream << targetKeyNum;

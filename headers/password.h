@@ -11,6 +11,7 @@ using namespace std;
 class password {
 public:
     password(string rawplaintext, string rawciphertext);
+    password();
     virtual ~password();
     bool getParity(long long num);
     long long int getFrac(long double input, int numDigits);

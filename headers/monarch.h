@@ -17,6 +17,7 @@
 class monarch {
 public:
 	monarch(std::string targetKey);
+	monarch();
 	virtual ~monarch();
     string dateKey;
     string password;

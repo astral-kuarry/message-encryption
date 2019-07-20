@@ -51,12 +51,15 @@ monarch::monarch(string targetKey) {
     }
     //cout << "Date Key: " << dateKey << endl << "Alphabetic Key: " << alphabeticKey << endl << "Numeric Key: " << numericKey << endl << "Password: " << password << endl;
 }
+monarch::monarch() {
 
+}
 monarch::~monarch() {
 
 }
 
 void monarch::getDateKey(string targetKey){
+    hlp.log("Get Date Key");
     int targetArray[10];
     int i, j, k;
     for (i = 0; i < targetKey.length(); i++) {
@@ -91,6 +94,7 @@ void monarch::getDateKey(string targetKey){
 }
 
 int monarch::searchMonarch(){
+    hlp.log("Search Monarch Array");
     int i, j, k;
     bool searching = true;
     int year, month, day;
@@ -181,6 +185,7 @@ int monarch::searchMonarch(){
 
 
 string monarch::getAlphabeticKey(int index){
+    hlp.log("Get Alphabetic Key");
     int i,j,k;
     string concatonated;
     string alphabeticKey;
@@ -235,8 +240,10 @@ string monarch::getAlphabeticKey(int index){
 }
 
 string monarch::getNumericKey(string targetKey){
+    hlp.log("Get Numeric Key");
     string numericKey;
     int i = 2;
+    // << targetKey << endl;
     numericKey = targetKey.at(0);
     while (numericKey.length() <= 5){
         numericKey = numericKey + targetKey.at(i);

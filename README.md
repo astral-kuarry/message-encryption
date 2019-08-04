@@ -30,9 +30,9 @@ A date conversion algorithm turns this key into a specific date in the Gregorian
 
 Ex. 1:
 
-![ex1](D:\Dante Sanaei\New folder\CS\Github Projects\message-encryption\resources\ex1.PNG)
+![ex1](resources\ex1.PNG)
 
 Ex. 2:
 
-![ex2](D:\Dante Sanaei\New folder\CS\Github Projects\message-encryption\resources\ex2.PNG)
+![ex2](resources\ex2.PNG)
 

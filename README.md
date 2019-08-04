@@ -20,7 +20,7 @@ The algorithm begins by converting the MESSAGE key into a 10 digit alphanumeric 
 
 The program runs these keys through a sixty option tree with unique string manipulations and generates a string termed the PLAINTEXT. This is then encrypted using the *Playfair Cipher* to create the CIPHERTEXT. After a final encoding using base64, this string becomes the **username**.
 
-### Part Two: Password Generation
+#### Part Two: Password Generation
 
 Based on their properties, the PLAINTEXT and CIPHERTEXT are used in one of seven possible mathematical calculations to generate a new 8 digit number called the TARGET key. 
 
@@ -30,9 +30,9 @@ A date conversion algorithm turns this key into a specific date in the Gregorian
 
 Ex. 1:
 
-![ex1](resources\ex1.PNG)
+![ex1](resources/ex1.PNG)
 
 Ex. 2:
 
-![ex2](resources\ex2.PNG)
+![ex2](resources/ex2.PNG)
 
